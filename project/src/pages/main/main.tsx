@@ -38,7 +38,7 @@ function Main({rentalOffers}: MainProps): JSX.Element {
           <div className='container'>
             <div className='header__wrapper'>
               <div className='header__left'>
-                <a className='header__logo-link header__logo-link--active'>
+                <a href='#xxx' className='header__logo-link header__logo-link--active'>
                   <img
                     className='header__logo'
                     src='img/logo.svg'
@@ -53,7 +53,7 @@ function Main({rentalOffers}: MainProps): JSX.Element {
                   <li className='header__nav-item user'>
                     <a
                       className='header__nav-link header__nav-link--profile'
-                      href='#'
+                      href='#xxx'
                     >
                       <div className='header__avatar-wrapper user__avatar-wrapper'></div>
                       <span className='header__user-name user__name'>
@@ -63,7 +63,7 @@ function Main({rentalOffers}: MainProps): JSX.Element {
                     </a>
                   </li>
                   <li className='header__nav-item'>
-                    <a className='header__nav-link' href='#'>
+                    <a className='header__nav-link' href='#xxx'>
                       <span className='header__signout'>Sign out</span>
                     </a>
                   </li>
@@ -78,32 +78,32 @@ function Main({rentalOffers}: MainProps): JSX.Element {
             <section className='locations container'>
               <ul className='locations__list tabs__list'>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='#'>
+                  <a className='locations__item-link tabs__item' href='#xxx'>
                     <span>Paris</span>
                   </a>
                 </li>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='#'>
+                  <a className='locations__item-link tabs__item' href='#xxx'>
                     <span>Cologne</span>
                   </a>
                 </li>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='#'>
+                  <a className='locations__item-link tabs__item' href='#xxx'>
                     <span>Brussels</span>
                   </a>
                 </li>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item tabs__item--active'>
+                  <a className='locations__item-link tabs__item tabs__item--active' href='#xxx'>
                     <span>Amsterdam</span>
                   </a>
                 </li>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='#'>
+                  <a className='locations__item-link tabs__item' href='#xxx'>
                     <span>Hamburg</span>
                   </a>
                 </li>
                 <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='#'>
+                  <a href='#xxx' className='locations__item-link tabs__item'>
                     <span>Dusseldorf</span>
                   </a>
                 </li>
