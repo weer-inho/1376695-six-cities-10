@@ -1,8 +1,14 @@
 import Main from '../../pages/main/main';
 
-function App(): JSX.Element {
+type AppProps = {
+  rentalOffers: number;
+}
+
+function App({rentalOffers}: AppProps): JSX.Element {
   return (
-    <Main />
+    <Main
+      rentalOffers={rentalOffers}
+    />
   );
 }
 

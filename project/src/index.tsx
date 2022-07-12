@@ -2,12 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
+const Setting = {
+  RENTAL_OFFERS: 5,
+};
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <React.StrictMode>
-    <App />
+    <App
+      rentalOffers = {Setting.RENTAL_OFFERS}
+    />
   </React.StrictMode>,
 );

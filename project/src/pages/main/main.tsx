@@ -1,6 +1,15 @@
 import CityCard from '../../components/city-card/city-card';
 
-function Main():JSX.Element {
+type MainProps = {
+  rentalOffers: number;
+}
+
+function Main({rentalOffers}: MainProps): JSX.Element {
+  const cityCards = [];
+  for (let i = 0; i < rentalOffers; i++) {
+    cityCards.push(<CityCard />);
+  }
+
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -133,11 +142,7 @@ function Main():JSX.Element {
                   </ul>
                 </form>
                 <div className='cities__places-list places__list tabs__content'>
-                  <CityCard />
-                  <CityCard />
-                  <CityCard />
-                  <CityCard />
-                  <CityCard />
+                  {cityCards}
                 </div>
               </section>
               <div className='cities__right-section'>
