@@ -19,7 +19,12 @@ function App({rentalOffers, offers}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoot.Main}
-          element={<Main rentalOffers={rentalOffers} />}
+          element={
+            <Main
+              rentalOffers={rentalOffers}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoot.Login}

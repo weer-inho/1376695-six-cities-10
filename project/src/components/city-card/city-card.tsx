@@ -4,17 +4,25 @@ type CityCardType = {
   offer: offerType;
 }
 
+function returnPremium(isPremium: boolean):JSX.Element | undefined{
+  if (isPremium) {
+    return (
+      <div className='place-card__mark'><span>Premium</span></div>
+    );
+  }
+
+  return undefined;
+}
+
 function CityCard({offer}: CityCardType):JSX.Element {
   return (
     <article className='cities__card place-card'>
-      <div className='place-card__mark'>
-        <span>Premium</span>
-      </div>
+      {returnPremium(offer.isPremium)};
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <a href='#xxx'>
           <img
             className='place-card__image'
-            src='img/apartment-03.jpg'
+            src={offer.photos[0]}
             width={260}
             height={200}
             alt='Place'
@@ -45,14 +53,14 @@ function CityCard({offer}: CityCardType):JSX.Element {
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{ width: '100%' }} />
+            <span style={{ width: `${offer.stars * 20}%` }} />
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='#xxx'>Nice, cozy, warm big bed apartment</a>
+          <a href='#xxx'>{offer.title}</a>
         </h2>
-        <p className='place-card__type'>Apartment</p>
+        <p className='place-card__type'>{offer.type}</p>
       </div>
     </article>
   );
