@@ -1,5 +1,8 @@
 import {offerType, reviewType} from '../types/types';
 
+function generateId():string {
+  return `id${Math.random().toString(16).slice(2)}`;
+}
 
 export const reviews:reviewType[] = [
   {
@@ -42,6 +45,7 @@ export const reviews:reviewType[] = [
 
 export const offers: offerType[] = [
   {
+    id: generateId(),
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
     title: 'Aliquam sed nisi volutpat, tempus lacus in, ultricies mi',
     description: 'Etiam semper eu dolor in bibendum. Aliquam non hendrerit nisl. Mauris tincidunt tellus non ante fermentum tempus. Sed ultrices lorem nisl, vel commodo ante volutpat nec. Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. Nam porttitor iaculis dui at ultrices. Mauris a laoreet dolor. Fusce turpis risus, sodales vulputate lorem at, vehicula placerat purus. Ut nec laoreet nisl.',
@@ -61,6 +65,7 @@ export const offers: offerType[] = [
     reviews: reviews[0],
   },
   {
+    id: generateId(),
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
     title: 'Donec pulvinar felis sed ante maximus fringilla',
     description: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque id finibus tellus',
@@ -80,6 +85,7 @@ export const offers: offerType[] = [
     reviews: reviews[1],
   },
   {
+    id: generateId(),
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
     title: 'Morbi congue porta ex, id convallis est mattis nec.',
     description: 'Sed vitae nunc vitae massa varius aliquam sit amet id ante. Maecenas at accumsan quam. Proin quis enim vulputate, suscipit dui non, luctus justo.',
@@ -99,6 +105,7 @@ export const offers: offerType[] = [
     reviews: reviews[2],
   },
   {
+    id: generateId(),
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
     title: 'Donec viverra orci dui, eu placerat arcu malesuada ac.',
     description: 'Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. ',

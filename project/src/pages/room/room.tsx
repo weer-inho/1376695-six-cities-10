@@ -1,9 +1,16 @@
 import { useParams } from 'react-router-dom';
+import {offerType} from '../../types/types';
 
-function Room(): JSX.Element {
+type RoomProps = {
+  offers: offerType[];
+}
+
+function Room({offers}: RoomProps): JSX.Element {
   const params = useParams();
   // eslint-disable-next-line no-console
   console.log(params);
+  // eslint-disable-next-line no-console
+  console.log(offers);
 
   return (
     <>

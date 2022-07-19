@@ -5,6 +5,7 @@ export type ownerType = {
 }
 
 export type offerType = {
+  id: string,
   photos: string[],
   title: string,
   description: string;

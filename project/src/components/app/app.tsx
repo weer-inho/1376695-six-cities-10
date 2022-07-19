@@ -35,7 +35,11 @@ function App({rentalOffers, offers}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoot.Room}
-          element={<Room />}
+          element={
+            <Room
+              offers={offers}
+            />
+          }
         />
         <Route
           path='*'
