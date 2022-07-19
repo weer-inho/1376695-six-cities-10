@@ -12,6 +12,7 @@ export type offerType = {
   type: string,
   isPremium: boolean,
   stars: number,
+  city: string,
   bedrooms: number,
   guestsMax: number,
   price: number,

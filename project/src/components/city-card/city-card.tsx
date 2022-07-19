@@ -45,7 +45,7 @@ function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX
             </span>
           </div>
           <button
-            className='place-card__bookmark-button button'
+            className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
             type='button'
           >
             <svg
