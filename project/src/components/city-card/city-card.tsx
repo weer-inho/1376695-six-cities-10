@@ -1,7 +1,10 @@
 import {offerType} from '../../types/types';
 
 type CityCardType = {
+  onHovered: () => void;
+  onDeactivated: () => void;
   offer: offerType;
+  isActive: boolean;
 }
 
 function returnPremium(isPremium: boolean):JSX.Element | undefined{
@@ -14,9 +17,13 @@ function returnPremium(isPremium: boolean):JSX.Element | undefined{
   return undefined;
 }
 
-function CityCard({offer}: CityCardType):JSX.Element {
+function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX.Element {
   return (
-    <article className='cities__card place-card'>
+    <article
+      onMouseEnter={onHovered}
+      onMouseLeave={onDeactivated}
+      className='cities__card place-card'
+    >
       {returnPremium(offer.isPremium)};
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <a href='#xxx'>

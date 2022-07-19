@@ -1,11 +1,14 @@
 import CityCard from '../../components/city-card/city-card';
 import {offerType} from '../../types/types';
+import {useState} from 'react';
 
 type OffersListProps = {
   offers: offerType[];
 }
 
 function OffersList({offers}: OffersListProps):JSX.Element {
+  const [cityHoveredId, setCityHoveredId] = useState(undefined as string | undefined);
+
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
@@ -39,8 +42,11 @@ function OffersList({offers}: OffersListProps):JSX.Element {
             const keyValue = offer.id;
             return (
               <CityCard
+                onHovered={() => setCityHoveredId(offer.id)}
+                onDeactivated={() => setCityHoveredId(undefined)}
                 key={keyValue}
                 offer={offer}
+                isActive={offer.id === cityHoveredId}
               />
             );
           })
