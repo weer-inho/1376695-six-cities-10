@@ -1,13 +1,13 @@
-import CityCard from '../../components/city-card/city-card';
+// import CityCard from '../../components/city-card/city-card';
 
 type MainProps = {
   rentalOffers: number;
 }
 
 function Main({rentalOffers}: MainProps): JSX.Element {
-  const cityCards = [];
+  // const cityCards = [];
   for (let i = 0; i < rentalOffers; i++) {
-    cityCards.push(<CityCard />);
+    // cityCards.push(<CityCard />);
   }
 
   return (
@@ -142,7 +142,7 @@ function Main({rentalOffers}: MainProps): JSX.Element {
                   </ul>
                 </form>
                 <div className='cities__places-list places__list tabs__content'>
-                  {cityCards}
+                  {/*{cityCards}*/}
                 </div>
               </section>
               <div className='cities__right-section'>

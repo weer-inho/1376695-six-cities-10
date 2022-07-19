@@ -1,4 +1,10 @@
-function CityCard():JSX.Element {
+import {offerType} from '../../types/types';
+
+type CityCardType = {
+  offer: offerType;
+}
+
+function CityCard({offer}: CityCardType):JSX.Element {
   return (
     <article className='cities__card place-card'>
       <div className='place-card__mark'>
@@ -18,7 +24,7 @@ function CityCard():JSX.Element {
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
-            <b className='place-card__price-value'>€180</b>
+            <b className='place-card__price-value'>{offer.price}</b>
             <span className='place-card__price-text'>
               /&nbsp;night
             </span>
