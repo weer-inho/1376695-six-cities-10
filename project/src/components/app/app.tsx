@@ -6,12 +6,14 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Room from '../../pages/room/room';
 import Main from '../../pages/main/main';
+import {offerType} from '../../types/types';
 
 type AppProps = {
   rentalOffers: number;
+  offers: offerType[];
 }
 
-function App({rentalOffers}: AppProps): JSX.Element {
+function App({rentalOffers, offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>

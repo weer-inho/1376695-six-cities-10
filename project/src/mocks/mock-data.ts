@@ -1,4 +1,44 @@
-import {offerType} from '../types/types';
+import {offerType, reviewType} from '../types/types';
+
+
+export const reviews:reviewType[] = [
+  {
+    avatar: 'https://picsum.photos/54/54',
+    name: 'Alesha',
+    score: 5,
+    date: 'August 2007',
+    reviewText: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+  },
+  {
+    avatar: 'https://picsum.photos/54/54',
+    name: 'Diana',
+    score: 2,
+    date: 'March 2016',
+    reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+  },
+  {
+    avatar: 'https://picsum.photos/54/54',
+    name: 'Igor',
+    score: 1,
+    date: 'September 204',
+    reviewText: 'Повседневная практика показывает, что начало повседневной работы по формированию позиции создаёт предпосылки качественно новых шагов для дальнейших направлений развитая системы массового участия. Дорогие друзья, постоянное информационно-техническое обеспечение нашей деятельности напрямую зависит от позиций, занимаемых участниками в отношении поставленных задач. ',
+  },
+  {
+    avatar: 'https://picsum.photos/54/54',
+    name: 'Vladislav',
+    score: 4,
+    date: 'December 2022',
+    reviewText: 'Не следует, однако, забывать о том, что постоянное информационно-техническое обеспечение нашей деятельности представляет собой интересный эксперимент проверки дальнейших направлений развитая системы массового участия!',
+  },
+  {
+    avatar: 'https://picsum.photos/54/54',
+    name: 'Arsen',
+    score: 5,
+    date: 'May 2019',
+    reviewText: 'С другой стороны консультация с профессионалами из IT обеспечивает широкому кругу специалистов участие в формировании ключевых компонентов планируемого обновления. ',
+  },
+];
+
 
 export const offers: offerType[] = [
   {
@@ -14,10 +54,11 @@ export const offers: offerType[] = [
     householdItems: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
     isFavorite: true,
     ownerInfo: {
-       avatar: 'https://picsum.photos/74/74',
-       name: 'Suzan',
-       isPro: true,
+      avatar: 'https://picsum.photos/74/74',
+      name: 'Suzan',
+      isPro: true,
     },
+    reviews: reviews[0],
   },
   {
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
@@ -36,6 +77,7 @@ export const offers: offerType[] = [
       name: 'Max',
       isPro: false,
     },
+    reviews: reviews[1],
   },
   {
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
@@ -54,6 +96,7 @@ export const offers: offerType[] = [
       name: 'Sergei',
       isPro: true,
     },
+    reviews: reviews[2],
   },
   {
     photos: ['https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200','https://picsum.photos/260/200'],
@@ -72,13 +115,6 @@ export const offers: offerType[] = [
       name: 'Nika',
       isPro: false,
     },
+    reviews: reviews[3],
   },
-]
-
-export type reviewType = {
-  avatar: string,
-  name: string,
-  score: number,
-  date: string,
-  reviewText: string,
-}
+];

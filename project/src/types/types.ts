@@ -17,6 +17,7 @@ export type offerType = {
   householdItems: string[],
   isFavorite: boolean,
   ownerInfo: ownerType,
+  reviews: reviewType,
 }
 
 export type reviewType = {
