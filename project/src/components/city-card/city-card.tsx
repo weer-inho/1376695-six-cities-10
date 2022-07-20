@@ -1,4 +1,5 @@
 import {offerType} from '../../types/types';
+import {Link} from 'react-router-dom';
 
 type CityCardType = {
   onHovered: () => void;
@@ -7,7 +8,7 @@ type CityCardType = {
   isActive: boolean;
 }
 
-function returnPremium(isPremium: boolean):JSX.Element | undefined{
+export function returnPremium(isPremium: boolean | undefined):JSX.Element | undefined{
   if (isPremium) {
     return (
       <div className='place-card__mark'><span>Premium</span></div>
@@ -65,7 +66,7 @@ function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='#xxx'>{offer.title}</a>
+          <Link to={`offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>

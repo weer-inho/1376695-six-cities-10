@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import {offerType} from '../../types/types';
+import {generateId} from '../../mocks/mock-data';
 
 type RoomProps = {
   offers: offerType[];
@@ -8,9 +9,15 @@ type RoomProps = {
 function Room({offers}: RoomProps): JSX.Element {
   const params = useParams();
   // eslint-disable-next-line no-console
-  console.log(params);
+  console.log('params: ', params.id);
   // eslint-disable-next-line no-console
-  console.log(offers);
+  console.log('offers: ', offers);
+
+  const offerData = offers.find((offer) => {
+    if (offer.id === params.id) {
+      return true;
+    }
+  });
 
   return (
     <>
@@ -78,58 +85,28 @@ function Room({offers}: RoomProps): JSX.Element {
           <section className='property'>
             <div className='property__gallery-container container'>
               <div className='property__gallery'>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/room.jpg'
-                    alt=' studio'
-                  />
-                </div>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/apartment-01.jpg'
-                    alt=' studio'
-                  />
-                </div>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/apartment-02.jpg'
-                    alt=' studio'
-                  />
-                </div>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/apartment-03.jpg'
-                    alt=' studio'
-                  />
-                </div>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/studio-01.jpg'
-                    alt=' studio'
-                  />
-                </div>
-                <div className='property__image-wrapper'>
-                  <img
-                    className='property__image'
-                    src='img/apartment-01.jpg'
-                    alt=' studio'
-                  />
-                </div>
+                {
+                  offerData?.photos.map((photo, index) =>
+                    (
+                      <div key={generateId()} className='property__image-wrapper'>
+                        <img
+                          className='property__image'
+                          src={photo}
+                          alt=' studio'
+                        />
+                      </div>
+                    )
+                  )
+                }
               </div>
             </div>
             <div className='property__container container'>
               <div className='property__wrapper'>
-                <div className='property__mark'>
-                  <span>Premium</span>
-                </div>
+                {offerData?.isPremium ? <div className='property__mark'><span>Premium</span></div> : null}
                 <div className='property__name-wrapper'>
                   <h1 className='property__name'>
-                    Beautiful &amp; luxurious studio at great location
+                    {/*Beautiful &amp; luxurious studio at great location*/}
+                    {offerData?.title}
                   </h1>
                   <button
                     className='property__bookmark-button button'
@@ -146,36 +123,31 @@ function Room({offers}: RoomProps): JSX.Element {
                     <span style={{ width: '80%' }} />
                     <span className='visually-hidden'>Rating</span>
                   </div>
-                  <span className='property__rating-value rating__value'>4.8</span>
+                  <span className='property__rating-value rating__value'>{offerData?.stars}</span>
                 </div>
                 <ul className='property__features'>
                   <li className='property__feature property__feature--entire'>
-                    Apartment
+                    {offerData?.type}
                   </li>
                   <li className='property__feature property__feature--bedrooms'>
-                    3 Bedrooms
+                    {offerData?.bedrooms} Bedrooms
                   </li>
                   <li className='property__feature property__feature--adults'>
-                    Max 4 adults
+                    Max {offerData?.guestsMax} adults
                   </li>
                 </ul>
                 <div className='property__price'>
-                  <b className='property__price-value'>€120</b>
+                  <b className='property__price-value'>€{offerData?.price}</b>
                   <span className='property__price-text'>&nbsp;night</span>
                 </div>
                 <div className='property__inside'>
                   <h2 className='property__inside-title'>Whats inside</h2>
                   <ul className='property__inside-list'>
-                    <li className='property__inside-item'>Wi-Fi</li>
-                    <li className='property__inside-item'>Washing machine</li>
-                    <li className='property__inside-item'>Towels</li>
-                    <li className='property__inside-item'>Heating</li>
-                    <li className='property__inside-item'>Coffee machine</li>
-                    <li className='property__inside-item'>Baby seat</li>
-                    <li className='property__inside-item'>Kitchen</li>
-                    <li className='property__inside-item'>Dishwasher</li>
-                    <li className='property__inside-item'>Cabel TV</li>
-                    <li className='property__inside-item'>Fridge</li>
+                    {
+                      offerData?.householdItems.map((item) => (
+                        <li key={generateId()} className='property__inside-item'>{item}</li>
+                      ))
+                    }
                   </ul>
                 </div>
                 <div className='property__host'>
@@ -184,25 +156,18 @@ function Room({offers}: RoomProps): JSX.Element {
                     <div className='property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper'>
                       <img
                         className='property__avatar user__avatar'
-                        src='img/avatar-angelina.jpg'
+                        src={offerData?.ownerInfo.avatar}
                         width={74}
                         height={74}
                         alt='Host avatar'
                       />
                     </div>
-                    <span className='property__user-name'>Angelina</span>
+                    <span className='property__user-name'>{offerData?.ownerInfo.name}</span>
                     <span className='property__user-status'>Pro</span>
                   </div>
                   <div className='property__description'>
                     <p className='property__text'>
-                      A quiet cozy and picturesque that hides behind a a river by
-                      the unique lightness of Amsterdam. The building is green and
-                      from 18th century.
-                    </p>
-                    <p className='property__text'>
-                      An independent House, strategically located between Rembrand
-                      Square and National Opera, but where the bustle of the city
-                      comes to rest in this alley flowery and colorful.
+                      {offerData?.description}
                     </p>
                   </div>
                 </div>
@@ -216,13 +181,13 @@ function Room({offers}: RoomProps): JSX.Element {
                         <div className='reviews__avatar-wrapper user__avatar-wrapper'>
                           <img
                             className='reviews__avatar user__avatar'
-                            src='img/avatar-max.jpg'
+                            src={offerData?.reviews.avatar}
                             width={54}
                             height={54}
                             alt='Reviews avatar'
                           />
                         </div>
-                        <span className='reviews__user-name'>Max</span>
+                        <span className='reviews__user-name'>{offerData?.reviews.name}</span>
                       </div>
                       <div className='reviews__info'>
                         <div className='reviews__rating rating'>
@@ -232,9 +197,7 @@ function Room({offers}: RoomProps): JSX.Element {
                           </div>
                         </div>
                         <p className='reviews__text'>
-                          A quiet cozy and picturesque that hides behind a a river
-                          by the unique lightness of Amsterdam. The building is
-                          green and from 18th century.
+                          {offerData?.reviews.reviewText}
                         </p>
                         <time className='reviews__time' dateTime='2019-04-24'>
                           April 2019

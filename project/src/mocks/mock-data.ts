@@ -1,6 +1,6 @@
 import {offerType, reviewType} from '../types/types';
 
-function generateId():string {
+export function generateId():string {
   return `id${Math.random().toString(16).slice(2)}`;
 }
 
