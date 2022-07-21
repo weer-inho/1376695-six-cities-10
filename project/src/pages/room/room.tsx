@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import {offerType} from '../../types/types';
-import {generateId} from '../../mocks/mock-data';
 import CommentForm from '../../components/comment-form/comment-form';
 
 type RoomProps = {
@@ -14,11 +13,7 @@ function Room({offers}: RoomProps): JSX.Element {
   // eslint-disable-next-line no-console
   console.log('offers: ', offers);
 
-  const offerData = offers.find((offer) => {
-    if (offer.id === params.id) {
-      return true;
-    }
-  });
+  const offerData = offers.find((offer) => (offer.id === params.id));
 
   return (
     <>
@@ -89,7 +84,7 @@ function Room({offers}: RoomProps): JSX.Element {
                 {
                   offerData?.photos.map((photo, index) =>
                     (
-                      <div key={generateId()} className='property__image-wrapper'>
+                      <div key={photo} className='property__image-wrapper'>
                         <img
                           className='property__image'
                           src={photo}
@@ -146,7 +141,7 @@ function Room({offers}: RoomProps): JSX.Element {
                   <ul className='property__inside-list'>
                     {
                       offerData?.householdItems.map((item) => (
-                        <li key={generateId()} className='property__inside-item'>{item}</li>
+                        <li key={item} className='property__inside-item'>{item}</li>
                       ))
                     }
                   </ul>
