@@ -1,4 +1,4 @@
-import {cityType, offerType, reviewType} from '../types/types';
+import {cityType, offerType, reviewType, Points, City} from '../types/types';
 
 export function generateId():string {
   return `id${Math.random().toString(16).slice(2)}`;
@@ -138,9 +138,37 @@ export const offers: offerType[] = [
   },
 ];
 
-export const CITIES = [
-  {lat: 52.3909553943508, lng: 4.85309666406198},
-  {lat: 52.369553943508, lng: 4.85309666406198},
-  {lat: 52.3909553943508, lng: 4.929309666406198},
-  {lat: 52.3809553943508, lng: 4.939309666406198},
+export const POINTS: Points = [
+  {
+    title: 'Саундвью',
+    lat: 40.816881,
+    lng: -73.872768
+  },
+  {
+    title: 'Ферри Поинт',
+    lat: 40.814909,
+    lng: -73.830682
+  },
+  {
+    title: 'Бронкс',
+    lat: 40.862413,
+    lng: -73.879357
+  },
+  {
+    title: 'Инвуд-Хилл',
+    lat: 40.870817,
+    lng: -73.927112
+  },
+  {
+    title: 'Пелхэм-Бей-Парк',
+    lat: 40.877312,
+    lng: -73.807182
+  }
 ];
+
+export const mainCity:City = {
+  title: 'Нью-Йорк',
+  lat: 40.835292,
+  lng: -73.916236,
+  zoom: 10
+};
