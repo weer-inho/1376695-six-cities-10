@@ -1,6 +1,7 @@
-import {useEffect, useState, MutableRefObject} from 'react';
-import {Map, TileLayer} from 'leaflet';
-import {City} from '../../types/types';
+import { useEffect, useState, MutableRefObject } from 'react';
+import { City } from '../../types/types';
+import { Map } from 'leaflet';
+import {getMapInstance} from './get-map-instance';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
@@ -9,29 +10,19 @@ function useMap(
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
-    if (mapRef.current !== null && map === null) {
-      const instance = new Map(mapRef.current, {
-        center: {
-          lat: city.lat,
-          lng: city.lng
-        },
-        zoom: 10
-      });
-
-      const layer = new TileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        }
-      );
-
-      instance.addLayer(layer);
-
-      setMap(instance);
+    if (mapRef.current === null) {
+      return;
     }
-  }, [mapRef, map, city]);
 
+    const instance = getMapInstance(mapRef.current, city);
+
+    setMap(instance);
+    return () => {
+      instance.off();
+      instance.remove();
+      setMap(null);
+    };
+  }, [mapRef, city]);
   return map;
 }
 

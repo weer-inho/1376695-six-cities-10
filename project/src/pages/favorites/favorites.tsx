@@ -89,18 +89,19 @@ function Favorites({offers}: FavoritesType): JSX.Element {
                       </div>
                       <div className='favorites__places'>
                         {
-                          offers.map((offer) => {
-                            if (offer.city === city) {
-                              return (
+                          offers.map((offer) =>
+                            offer.city === city ?
+                              (
                                 <CityCard
                                   onHovered={() => undefined}
                                   onDeactivated={() => undefined}
                                   key={offer.id}
                                   offer={offer}
                                   isActive={false}
-                                />);
-                            }
-                          })
+                                />
+                              ) :
+                              null
+                          )
                         }
                       </div>
                     </li>
