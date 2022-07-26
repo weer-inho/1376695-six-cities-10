@@ -34,3 +34,18 @@ export type cityType = {
   cityName: string,
   cityId: number,
 }
+
+export type City = {
+  title: string;
+  lat: number;
+  lng: number;
+  zoom: number;
+};
+
+export type Point = {
+  title: string;
+  lat: number;
+  lng: number;
+};
+
+export type Points = Point[];
