@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import {offerType} from '../../types/types';
 import CommentForm from '../../components/comment-form/comment-form';
+import CommentList from '../../components/comment-list/comment-list';
 
 type RoomProps = {
   offers: offerType[];
@@ -8,10 +9,6 @@ type RoomProps = {
 
 function Room({offers}: RoomProps): JSX.Element {
   const params = useParams();
-  // eslint-disable-next-line no-console
-  console.log('params: ', params.id);
-  // eslint-disable-next-line no-console
-  console.log('offers: ', offers);
 
   const offerData = offers.find((offer) => (offer.id === params.id));
 
@@ -171,36 +168,7 @@ function Room({offers}: RoomProps): JSX.Element {
                   <h2 className='reviews__title'>
                     Reviews · <span className='reviews__amount'>1</span>
                   </h2>
-                  <ul className='reviews__list'>
-                    <li className='reviews__item'>
-                      <div className='reviews__user user'>
-                        <div className='reviews__avatar-wrapper user__avatar-wrapper'>
-                          <img
-                            className='reviews__avatar user__avatar'
-                            src={offerData?.reviews.avatar}
-                            width={54}
-                            height={54}
-                            alt='Reviews avatar'
-                          />
-                        </div>
-                        <span className='reviews__user-name'>{offerData?.reviews.name}</span>
-                      </div>
-                      <div className='reviews__info'>
-                        <div className='reviews__rating rating'>
-                          <div className='reviews__stars rating__stars'>
-                            <span style={{ width: '80%' }} />
-                            <span className='visually-hidden'>Rating</span>
-                          </div>
-                        </div>
-                        <p className='reviews__text'>
-                          {offerData?.reviews.reviewText}
-                        </p>
-                        <time className='reviews__time' dateTime='2019-04-24'>
-                          April 2019
-                        </time>
-                      </div>
-                    </li>
-                  </ul>
+                  <CommentList reviews={offerData?.reviews}/>
                   <CommentForm />
                 </section>
               </div>
