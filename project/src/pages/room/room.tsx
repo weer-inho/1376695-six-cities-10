@@ -165,9 +165,6 @@ function Room({offers}: RoomProps): JSX.Element {
                   </div>
                 </div>
                 <section className='property__reviews reviews'>
-                  <h2 className='reviews__title'>
-                    Reviews · <span className='reviews__amount'>1</span>
-                  </h2>
                   <CommentList reviews={offerData?.reviews}/>
                   <CommentForm />
                 </section>

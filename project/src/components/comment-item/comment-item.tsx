@@ -5,9 +5,6 @@ type CommentItemProps = {
 }
 
 function CommentItem({review}: CommentItemProps):JSX.Element {
-  // eslint-disable-next-line no-console
-  console.log(review);
-
   return (
     <li className='reviews__item'>
       <div className='reviews__user user'>

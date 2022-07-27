@@ -7,13 +7,18 @@ type CommentListProps = {
 
 function CommentList({reviews}: CommentListProps): JSX.Element {
   return (
-    <ul className='reviews__list'>
-      {
-        reviews?.map((review) => (
-          <CommentItem review={review} key={`${review?.name}-${review?.date}`}/>
-        ))
-      }
-    </ul>
+    <>
+      <h2 className='reviews__title'>
+        Reviews · <span className='reviews__amount'>{reviews?.length}</span>
+      </h2>
+      <ul className='reviews__list'>
+        {
+          reviews?.map((review) => (
+            <CommentItem review={review} key={`${review?.name}-${review?.date}`}/>
+          ))
+        }
+      </ul>
+    </>
   );
 }
 
