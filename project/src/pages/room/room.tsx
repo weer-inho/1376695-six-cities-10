@@ -1,14 +1,22 @@
 import { useParams } from 'react-router-dom';
-import {offerType} from '../../types/types';
+import {City, offerType, Points} from '../../types/types';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
+import Map from '../../components/map/map';
 
 type RoomProps = {
   offers: offerType[];
+  points: Points;
+  city: City;
 }
 
-function Room({offers}: RoomProps): JSX.Element {
+function Room({offers, points, city}: RoomProps): JSX.Element {
   const params = useParams();
+  // eslint-disable-next-line no-console
+  console.log(points);
+  points.length = 3;
+  // eslint-disable-next-line no-console
+  console.log(points);
 
   const offerData = offers.find((offer) => (offer.id === params.id));
 
@@ -170,7 +178,9 @@ function Room({offers}: RoomProps): JSX.Element {
                 </section>
               </div>
             </div>
-            <section className='property__map map' />
+            <section className='property__map map'>
+              <Map city={city} points={points}/>
+            </section>
           </section>
           <div className='container'>
             <section className='near-places places'>

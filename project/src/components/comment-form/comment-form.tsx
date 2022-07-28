@@ -7,8 +7,6 @@ function CommentForm():JSX.Element {
   });
 
   const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    // eslint-disable-next-line no-console
-    console.log(evt.target);
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
