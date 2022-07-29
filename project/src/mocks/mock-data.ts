@@ -154,22 +154,22 @@ export const offers: offerType[] = [
 
 export const POINTS: Points = [
   {
-    title: 'Саундвью',
+    title: 'Aliquam sed nisi volutpat, tempus lacus in, ultricies mi',
     lat: 40.816881,
-    lng: -73.872768
+    lng: -73.872768,
   },
   {
-    title: 'Ферри Поинт',
+    title: 'Donec pulvinar felis sed ante maximus fringilla',
     lat: 40.814909,
     lng: -73.830682
   },
   {
-    title: 'Бронкс',
+    title: 'Morbi congue porta ex, id convallis est mattis nec.',
     lat: 40.862413,
     lng: -73.879357
   },
   {
-    title: 'Инвуд-Хилл',
+    title: 'Donec viverra orci dui, eu placerat arcu malesuada ac.',
     lat: 40.870817,
     lng: -73.927112
   },
