@@ -13,7 +13,7 @@ type RoomProps = {
 
 function Room({offers, points, city}: RoomProps): JSX.Element {
   const params = useParams();
-  const articles:Points = [];
+  const articles:offerType[] = [];
   offers.forEach((offer) => {
     if (points.find((point) => point.title === offer.title)) {
       articles.push(offer);
