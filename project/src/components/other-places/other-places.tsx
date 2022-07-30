@@ -2,7 +2,7 @@ import {offerType} from '../../types/types';
 import CityCard from '../city-card/city-card';
 
 type OtherPlacesProps = {
-  offers: offerType[];
+  articles: offerType[];
 }
 
 function OtherPlaces({articles}:OtherPlacesProps):JSX.Element {
@@ -20,11 +20,11 @@ function OtherPlaces({articles}:OtherPlacesProps):JSX.Element {
             const keyValue = article.id;
             return (
               <CityCard
-                onHovered={() => {}}
-                onDeactivated={() => {}}
+                onHovered={() => undefined}
+                onDeactivated={() => undefined}
                 key={keyValue}
                 offer={article}
-                isActive={article.id}
+                isActive={false}
               />
             );
           })
