@@ -31,8 +31,15 @@ export type reviewType = {
 }
 
 export type cityType = {
-  cityName: string,
+  name: string,
+  location: LocationType,
   cityId: number,
+}
+
+export type LocationType = {
+  lat: number,
+  lng: number,
+  zoom: number,
 }
 
 export type City = {

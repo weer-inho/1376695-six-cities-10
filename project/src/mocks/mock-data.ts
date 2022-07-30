@@ -57,12 +57,60 @@ export const reviews:reviewType[] = [
 ];
 
 export const cities:cityType[] = [
-  {cityName: 'Paris', cityId: 0},
-  {cityName: 'Cologne', cityId: 1},
-  {cityName: 'Brussels', cityId: 2},
-  {cityName: 'Amsterdam', cityId: 3},
-  {cityName: 'Hamburg', cityId: 4},
-  {cityName: 'Dusseldord', cityId: 5},
+  {
+    name: 'Paris',
+    cityId: 0,
+    location: {
+      lat: 40.816881,
+      lng: -73.872768,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Cologne',
+    cityId: 1,
+    location: {
+      lat: 40.814909,
+      lng: -73.830682,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Brussels',
+    cityId: 2,
+    location: {
+      lat: 40.862413,
+      lng: -73.879357,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Amsterdam',
+    cityId: 3,
+    location: {
+      lat: 40.870817,
+      lng: -73.927112,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Hamburg',
+    cityId: 4,
+    location: {
+      lat: 40.877312,
+      lng: -73.807182,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Dusseldorf',
+    cityId: 0,
+    location: {
+      lat: 40.862412,
+      lng: -73.879356,
+      zoom: 10
+    }
+  },
 ];
 
 export const offers: offerType[] = [
