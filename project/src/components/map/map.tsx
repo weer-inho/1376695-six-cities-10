@@ -34,7 +34,7 @@ function Map(props: MapProps):JSX.Element {
     );
   }
 
-  return <section className={'cities__map map'} style={{height: '500px'}} ref={mapRef}></section>;
+  return <section className={'cities__map map'} style={{height: '600px'}} ref={mapRef}></section>;
 }
 
 export default Map;

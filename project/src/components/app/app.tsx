@@ -49,6 +49,8 @@ function App({rentalOffers, offers, points, city}: AppProps): JSX.Element {
           element={
             <Room
               offers={offers}
+              points={points}
+              city={city}
             />
           }
         />

@@ -40,15 +40,77 @@ export const reviews:reviewType[] = [
     date: 'May 2019',
     reviewText: 'С другой стороны консультация с профессионалами из IT обеспечивает широкому кругу специалистов участие в формировании ключевых компонентов планируемого обновления. ',
   },
+  {
+    avatar: 'https://picsum.photos/id/31/54/54',
+    name: 'Max',
+    score: 1,
+    date: 'Januar 2017',
+    reviewText: 'Соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует подготовке и реализации системы масштабного изменения ряда параметров. Дорогие друзья, курс на социально-ориентированный национальный проект',
+  },
+  {
+    avatar: 'https://picsum.photos/id/65/54/54',
+    name: 'Fish',
+    score: 5,
+    date: 'Febraury 2022',
+    reviewText: 'Дорогие друзья, новая модель организационной деятельности создаёт предпосылки качественно новых шагов для экономической целесообразности принимаемых решений? Задача организации, в особенности же курс на социально-ориентированный',
+  },
 ];
 
 export const cities:cityType[] = [
-  {cityName: 'Paris', cityId: 0},
-  {cityName: 'Cologne', cityId: 1},
-  {cityName: 'Brussels', cityId: 2},
-  {cityName: 'Amsterdam', cityId: 3},
-  {cityName: 'Hamburg', cityId: 4},
-  {cityName: 'Dusseldord', cityId: 5},
+  {
+    name: 'Paris',
+    cityId: 0,
+    location: {
+      lat: 40.816881,
+      lng: -73.872768,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Cologne',
+    cityId: 1,
+    location: {
+      lat: 40.814909,
+      lng: -73.830682,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Brussels',
+    cityId: 2,
+    location: {
+      lat: 40.862413,
+      lng: -73.879357,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Amsterdam',
+    cityId: 3,
+    location: {
+      lat: 40.870817,
+      lng: -73.927112,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Hamburg',
+    cityId: 4,
+    location: {
+      lat: 40.877312,
+      lng: -73.807182,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Dusseldorf',
+    cityId: 0,
+    location: {
+      lat: 40.862412,
+      lng: -73.879356,
+      zoom: 10
+    }
+  },
 ];
 
 export const offers: offerType[] = [
@@ -71,7 +133,7 @@ export const offers: offerType[] = [
       name: 'Suzan',
       isPro: true,
     },
-    reviews: reviews[0],
+    reviews: [reviews[0], reviews[1]],
   },
   {
     id: generateId(),
@@ -92,7 +154,7 @@ export const offers: offerType[] = [
       name: 'Max',
       isPro: false,
     },
-    reviews: reviews[1],
+    reviews: [reviews[1], reviews[2]],
   },
   {
     id: generateId(),
@@ -113,7 +175,7 @@ export const offers: offerType[] = [
       name: 'Sergei',
       isPro: true,
     },
-    reviews: reviews[2],
+    reviews: [reviews[2], reviews[3]],
   },
   {
     id: generateId(),
@@ -134,28 +196,28 @@ export const offers: offerType[] = [
       name: 'Nika',
       isPro: false,
     },
-    reviews: reviews[3],
+    reviews: [reviews[3], reviews[4]],
   },
 ];
 
 export const POINTS: Points = [
   {
-    title: 'Саундвью',
+    title: 'Aliquam sed nisi volutpat, tempus lacus in, ultricies mi',
     lat: 40.816881,
-    lng: -73.872768
+    lng: -73.872768,
   },
   {
-    title: 'Ферри Поинт',
+    title: 'Donec pulvinar felis sed ante maximus fringilla',
     lat: 40.814909,
     lng: -73.830682
   },
   {
-    title: 'Бронкс',
+    title: 'Morbi congue porta ex, id convallis est mattis nec.',
     lat: 40.862413,
     lng: -73.879357
   },
   {
-    title: 'Инвуд-Хилл',
+    title: 'Donec viverra orci dui, eu placerat arcu malesuada ac.',
     lat: 40.870817,
     lng: -73.927112
   },
