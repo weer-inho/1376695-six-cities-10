@@ -1,5 +1,6 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeCity} from '../../store/action';
+import {MouseEventHandler} from 'react';
 
 function Tabs():JSX.Element {
   const {city} = useAppSelector((state) => state);
@@ -9,7 +10,7 @@ function Tabs():JSX.Element {
   return (
     <div className='tabs'>
       <section className='locations container'>
-        <ul onClick={(evt) => console.log(evt.target.localName === 'span' ? dispatch(changeCity({city: evt.target.textContent})) : undefined)} className='locations__list tabs__list'>
+        <ul onClick={(evt) => evt.target.localName === 'span' ? dispatch(changeCity({city: evt.target.textContent})) : undefined} className='locations__list tabs__list'>
           <li className='locations__item'>
             <a className={`locations__item-link tabs__item ${city === 'Paris' ? 'tabs__item--active' : undefined}`} href='#xxx'>
               <span>Paris</span>

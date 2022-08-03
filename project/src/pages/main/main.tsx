@@ -11,14 +11,6 @@ type MainProps = {
 }
 
 function Main({rentalOffers, offers, points, city}: MainProps): JSX.Element {
-  const chosenCity = 'Cologne';
-  const placesToStay:offerType[] = [];
-
-  offers.forEach((offer) => offer.city.name === chosenCity ? placesToStay.push(offer) : undefined);
-
-  // eslint-disable-next-line no-console
-  console.log(placesToStay);
-
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -88,7 +80,7 @@ function Main({rentalOffers, offers, points, city}: MainProps): JSX.Element {
             <div className='cities__places-container container'>
 
               <OffersList
-                offers={placesToStay}
+                offers={offers}
               />
 
               <div className='cities__right-section'>
