@@ -10,7 +10,7 @@ const initialState = {
 export const reducer = createReducer(initialState, (builder) => {
   builder.
     addCase(changeCity, (state, action) => {
-      const {city} = action.payload;
+      const city = action.payload;
 
       state.city = city;
     });
