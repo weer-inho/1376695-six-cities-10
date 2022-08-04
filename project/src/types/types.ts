@@ -20,6 +20,11 @@ export type offerType = {
   isFavorite: boolean,
   ownerInfo: ownerType,
   reviews: reviewType[],
+  location: {
+    lat: number,
+    lng: number,
+    zoom: number
+  }
 }
 
 export type reviewType = {

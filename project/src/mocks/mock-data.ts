@@ -122,7 +122,7 @@ export const offers: offerType[] = [
     type: 'apartment',
     isPremium: true,
     stars: 3,
-    city: cities[1],
+    city: cities[0],
     bedrooms: 2,
     guestsMax: 7,
     price: 4534,
@@ -134,6 +134,11 @@ export const offers: offerType[] = [
       isPro: true,
     },
     reviews: [reviews[0], reviews[1]],
+    location: {
+      lat: 48.85341,
+      lng: 2.34881,
+      zoom: 10
+    }
   },
   {
     id: generateId(),
@@ -155,6 +160,11 @@ export const offers: offerType[] = [
       isPro: false,
     },
     reviews: [reviews[1], reviews[2]],
+    location: {
+      lat: 50.93331,
+      lng: 6.951,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -164,7 +174,7 @@ export const offers: offerType[] = [
     type: 'villa',
     isPremium: true,
     stars: 4,
-    city: cities[2],
+    city: cities[1],
     bedrooms: 5,
     guestsMax: 14,
     price: 15757,
@@ -176,6 +186,11 @@ export const offers: offerType[] = [
       isPro: true,
     },
     reviews: [reviews[2], reviews[3]],
+    location: {
+      lat: 50.99,
+      lng: 6.952,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -197,6 +212,11 @@ export const offers: offerType[] = [
       isPro: false,
     },
     reviews: [reviews[3], reviews[4]],
+    location: {
+      lat: 52.3741,
+      lng: 4.889691,
+      zoom: 10
+    }
   },
 ];
 

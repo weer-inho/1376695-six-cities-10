@@ -15,7 +15,7 @@ const defaultCustomIcon = new Icon({
 function Map():JSX.Element {
   const {offers, city, mainCity} = useAppSelector((state) => state);
   const placesToStay:LocationType[] = [];
-  offers.forEach((offer) => offer.city.name === city ? placesToStay.push(offer.city.location) : undefined);
+  offers.forEach((offer) => offer.city.name === city ? placesToStay.push(offer.location) : undefined);
   // eslint-disable-next-line no-console
   console.log(placesToStay);
 
