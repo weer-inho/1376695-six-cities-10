@@ -61,8 +61,8 @@ export const cities:cityType[] = [
     name: 'Paris',
     cityId: 0,
     location: {
-      lat: 40.816881,
-      lng: -73.872768,
+      lat: 48.8534,
+      lng: 2.3488,
       zoom: 10,
     }
   },
@@ -70,8 +70,8 @@ export const cities:cityType[] = [
     name: 'Cologne',
     cityId: 1,
     location: {
-      lat: 40.814909,
-      lng: -73.830682,
+      lat: 50.9333,
+      lng: 6.95,
       zoom: 10,
     }
   },
@@ -79,8 +79,8 @@ export const cities:cityType[] = [
     name: 'Brussels',
     cityId: 2,
     location: {
-      lat: 40.862413,
-      lng: -73.879357,
+      lat: 50.8504,
+      lng: 4.34878,
       zoom: 10
     }
   },
@@ -88,8 +88,8 @@ export const cities:cityType[] = [
     name: 'Amsterdam',
     cityId: 3,
     location: {
-      lat: 40.870817,
-      lng: -73.927112,
+      lat: 52.374,
+      lng: 4.88969,
       zoom: 10
     }
   },
@@ -97,8 +97,8 @@ export const cities:cityType[] = [
     name: 'Hamburg',
     cityId: 4,
     location: {
-      lat: 40.877312,
-      lng: -73.807182,
+      lat: 53.5753,
+      lng: 10.0153,
       zoom: 10
     }
   },
@@ -106,8 +106,8 @@ export const cities:cityType[] = [
     name: 'Dusseldorf',
     cityId: 0,
     location: {
-      lat: 40.862412,
-      lng: -73.879356,
+      lat: 51.2217,
+      lng: 6.77616,
       zoom: 10
     }
   },

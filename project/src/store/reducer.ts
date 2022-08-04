@@ -1,12 +1,12 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {offers, POINTS, mainCity} from '../mocks/mock-data';
+import {offers, POINTS, cities} from '../mocks/mock-data';
 import {changeCity, changeSort} from './action';
 
 const initialState = {
-  city: 'Paris',
+  city: cities[0].name,
   offers: offers,
   points: POINTS,
-  mainCity: mainCity,
+  mainCity: cities[1],
   sorting: 'Popular',
 };
 

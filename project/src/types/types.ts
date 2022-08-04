@@ -49,6 +49,16 @@ export type City = {
   zoom: number;
 };
 
+export type mainCity = {
+  name: string,
+  cityId: number,
+  location: {
+    lat: number,
+    lng: number,
+    zoom: number
+  }
+};
+
 export type Point = {
   title: string;
   lat: number;
