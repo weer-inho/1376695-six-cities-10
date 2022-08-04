@@ -1,8 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {offers, POINTS, cities} from '../mocks/mock-data';
-import {changeCity, changeSort} from './action';
+import {changeCity, changeHoveredId, changeSort} from './action';
 
 const initialState = {
+  hoveredCard:  '',
   offers: offers,
   points: POINTS,
   mainCity: cities[1],
@@ -20,5 +21,8 @@ export const reducer = createReducer(initialState, (builder) => {
       const sorting = action.payload;
 
       state.sorting = sorting;
+    })
+    .addCase(changeHoveredId, (state, action) => {
+      state.hoveredCard = action.payload;
     });
 });

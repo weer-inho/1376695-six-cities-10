@@ -16,8 +16,6 @@ function Map():JSX.Element {
   const {offers, mainCity} = useAppSelector((state) => state);
   const placesToStay:LocationType[] = [];
   offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer.location) : undefined);
-  // eslint-disable-next-line no-console
-  console.log(placesToStay);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mainCity);
