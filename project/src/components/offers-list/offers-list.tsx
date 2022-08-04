@@ -8,15 +8,15 @@ import {useAppSelector} from '../../hooks';
 function OffersList():JSX.Element {
   // const [sorting, setSorting] = useState('Popular');
   const [cityHoveredId, setCityHoveredId] = useState(undefined as string | undefined);
-  const {city, offers, sorting} = useAppSelector((state) => state);
+  const {offers, sorting, mainCity} = useAppSelector((state) => state);
   const placesToStay:offerType[] = [];
 
-  offers.forEach((offer) => offer.city.name === city ? placesToStay.push(offer) : undefined);
+  offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer) : undefined);
 
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
-      <b className='places__found'>{placesToStay.length ? placesToStay.length : 0} places to stay in {city}</b>
+      <b className='places__found'>{placesToStay.length ? placesToStay.length : 0} places to stay in {mainCity.name}</b>
       <SortingForm />
       <div className='cities__places-list places__list tabs__content'>
         {

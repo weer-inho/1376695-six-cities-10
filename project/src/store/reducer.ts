@@ -3,7 +3,6 @@ import {offers, POINTS, cities} from '../mocks/mock-data';
 import {changeCity, changeSort} from './action';
 
 const initialState = {
-  city: cities[1].name,
   offers: offers,
   points: POINTS,
   mainCity: cities[1],
@@ -15,7 +14,7 @@ export const reducer = createReducer(initialState, (builder) => {
     addCase(changeCity, (state, action) => {
       const city = action.payload;
 
-      state.city = city;
+      state.mainCity = city;
     })
     .addCase(changeSort, (state, action) => {
       const sorting = action.payload;
