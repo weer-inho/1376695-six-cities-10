@@ -234,3 +234,51 @@ export const mainCity:City = {
   lng: -73.916236,
   zoom: 10
 };
+
+export const sortPlacesToStay = (sortType:string, arrayForSort:offerType[]) => {
+  switch (sortType) {
+    case 'Price: low to high':
+      return arrayForSort.sort(sortPricesLowToHigh);
+      break;
+    case 'Price: high to low':
+      return arrayForSort.sort(sortPricesHighToLow);
+      break;
+    case 'Top rated first':
+      return arrayForSort.sort(sortRate);
+      break;
+    case 'Popular':
+      return arrayForSort;
+      break;
+    default:
+  }
+};
+
+const sortPricesLowToHigh = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price > priceB.price) {
+    return 1;
+  }
+  if (priceA.price < priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortPricesHighToLow = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price < priceB.price) {
+    return 1;
+  }
+  if (priceA.price > priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortRate = (rateA:offerType, rateB:offerType) => {
+  if (rateA.stars < rateB.stars) {
+    return 1;
+  }
+  if (rateA.stars > rateB.stars) {
+    return -1;
+  }
+  return 0;
+};
