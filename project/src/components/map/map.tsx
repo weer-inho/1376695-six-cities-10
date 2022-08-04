@@ -1,14 +1,9 @@
 import {useRef} from 'react';
 import useMap from './useMap';
 import {Icon, Marker} from 'leaflet';
-import {City, Points} from '../../types/types';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../../const';
-
-type MapProps = {
-  city: City;
-  points: Points;
-};
+import {useAppSelector} from '../../hooks';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -16,11 +11,11 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map(props: MapProps):JSX.Element {
-  const {city, points} = props;
+function Map():JSX.Element {
+  const {points, mainCity} = useAppSelector((state) => state);
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, mainCity);
 
   if (map) {
     points.forEach((point) => {

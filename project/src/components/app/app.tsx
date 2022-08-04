@@ -6,28 +6,15 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Room from '../../pages/room/room';
 import Main from '../../pages/main/main';
-import {City, offerType, Points} from '../../types/types';
 
-type AppProps = {
-  rentalOffers: number;
-  offers: offerType[];
-  points: Points;
-  city: City;
-}
-
-function App({rentalOffers, offers, points, city}: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoot.Main}
           element={
-            <Main
-              rentalOffers={rentalOffers}
-              offers={offers}
-              points={points}
-              city={city}
-            />
+            <Main />
           }
         />
         <Route
@@ -38,20 +25,14 @@ function App({rentalOffers, offers, points, city}: AppProps): JSX.Element {
           path={AppRoot.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites
-                offers={offers}
-              />
+              <Favorites />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoot.Room}
           element={
-            <Room
-              offers={offers}
-              points={points}
-              city={city}
-            />
+            <Room />
           }
         />
         <Route

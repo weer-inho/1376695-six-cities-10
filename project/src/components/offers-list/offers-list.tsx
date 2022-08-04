@@ -1,18 +1,22 @@
 import CityCard from '../../components/city-card/city-card';
-import {offerType} from '../../types/types';
 import {useState} from 'react';
+import {offerType} from '../../types/types';
+import {useAppSelector} from '../../hooks';
 
-type OffersListProps = {
-  offers: offerType[];
-}
-
-function OffersList({offers}: OffersListProps):JSX.Element {
+function OffersList():JSX.Element {
   const [cityHoveredId, setCityHoveredId] = useState(undefined as string | undefined);
+  const {city, offers} = useAppSelector((state) => state);
+  const placesToStay:offerType[] = [];
+
+  offers.forEach((offer) => offer.city.name === city ? placesToStay.push(offer) : undefined);
+
+  // eslint-disable-next-line no-console
+  console.log(placesToStay);
 
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
-      <b className='places__found'>312 places to stay in Amsterdam</b>
+      <b className='places__found'>{offers.length} places to stay in {offers[0].city.name}</b>
       <form className='places__sorting' action='#' method='get'>
         <span className='places__sorting-caption'>Sort by</span>
         <span className='places__sorting-type' tabIndex={0}>
@@ -38,7 +42,7 @@ function OffersList({offers}: OffersListProps):JSX.Element {
       </form>
       <div className='cities__places-list places__list tabs__content'>
         {
-          offers.map((offer) => {
+          placesToStay.map((offer) => {
             const keyValue = offer.id;
             return (
               <CityCard
