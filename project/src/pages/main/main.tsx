@@ -1,16 +1,8 @@
 import OffersList from '../../components/offers-list/offers-list';
-import {City, offerType, Points} from '../../types/types';
 import Map from '../../components/map/map';
 import Tabs from '../../components/tabs/tabs';
 
-type MainProps = {
-  rentalOffers: number;
-  offers: offerType[];
-  points: Points;
-  city: City;
-}
-
-function Main({rentalOffers, offers, points, city}: MainProps): JSX.Element {
+function Main(): JSX.Element {
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -79,12 +71,10 @@ function Main({rentalOffers, offers, points, city}: MainProps): JSX.Element {
           <div className='cities'>
             <div className='cities__places-container container'>
 
-              <OffersList
-                offers={offers}
-              />
+              <OffersList />
 
               <div className='cities__right-section'>
-                <Map city={city} points={points}/>
+                <Map />
               </div>
             </div>
           </div>

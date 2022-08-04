@@ -1,11 +1,9 @@
-import {cityType, offerType} from '../../types/types';
+import {cityType} from '../../types/types';
 import CityCard from '../../components/city-card/city-card';
+import {useAppSelector} from '../../hooks';
 
-type FavoritesType = {
-  offers: offerType[],
-}
-
-function Favorites({offers}: FavoritesType): JSX.Element {
+function Favorites(): JSX.Element {
+  const {offers} = useAppSelector((state) => state);
   let cities:cityType[] = [];
   offers.forEach((offer) => cities.push(offer.city));
   cities = [...new Set(cities)];

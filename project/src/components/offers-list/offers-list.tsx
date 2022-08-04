@@ -1,15 +1,11 @@
 import CityCard from '../../components/city-card/city-card';
-import {offerType} from '../../types/types';
 import {useState} from 'react';
+import {offerType} from '../../types/types';
 import {useAppSelector} from '../../hooks';
 
-type OffersListProps = {
-  offers: offerType[];
-}
-
-function OffersList({offers}: OffersListProps):JSX.Element {
+function OffersList():JSX.Element {
   const [cityHoveredId, setCityHoveredId] = useState(undefined as string | undefined);
-  const {city} = useAppSelector((state) => state);
+  const {city, offers} = useAppSelector((state) => state);
   const placesToStay:offerType[] = [];
 
   offers.forEach((offer) => offer.city.name === city ? placesToStay.push(offer) : undefined);

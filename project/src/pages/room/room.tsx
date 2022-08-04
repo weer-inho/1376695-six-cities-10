@@ -1,17 +1,13 @@
 import { useParams } from 'react-router-dom';
-import {City, offerType, Points} from '../../types/types';
+import {offerType} from '../../types/types';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
 import OtherPlaces from '../../components/other-places/other-places';
+import {useAppSelector} from '../../hooks';
 
-type RoomProps = {
-  offers: offerType[];
-  points: Points;
-  city: City;
-}
-
-function Room({offers, points, city}: RoomProps): JSX.Element {
+function Room(): JSX.Element {
+  const {offers, points} = useAppSelector((state) => state);
   const params = useParams();
   const articles:offerType[] = [];
   offers.forEach((offer) => {
@@ -19,9 +15,6 @@ function Room({offers, points, city}: RoomProps): JSX.Element {
       articles.push(offer);
     }
   });
-
-  points.length = 3;
-  articles.length = 3;
 
   const offerData = offers.find((offer) => (offer.id === params.id));
 
@@ -184,7 +177,7 @@ function Room({offers, points, city}: RoomProps): JSX.Element {
               </div>
             </div>
             <section className='property__map map'>
-              <Map city={city} points={points}/>
+              <Map />
             </section>
           </section>
           <div className='container'>
