@@ -2,9 +2,9 @@ import {useRef} from 'react';
 import useMap from './useMap';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {URL_MARKER_DEFAULT} from '../../const';
+import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {LocationType} from '../../types/types';
+import {offerType} from '../../types/types';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -12,10 +12,17 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
+const currentCustomIcon = new Icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+
 function Map():JSX.Element {
-  const {offers, mainCity} = useAppSelector((state) => state);
-  const placesToStay:LocationType[] = [];
-  offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer.location) : undefined);
+  const {offers, mainCity, hoveredCard} = useAppSelector((state) => state);
+  const placesToStay:offerType[] = [];
+  offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer) : undefined);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mainCity);
@@ -23,11 +30,17 @@ function Map():JSX.Element {
   if (map) {
     placesToStay.forEach((point) => {
       const marker = new Marker({
-        lat: point.lat,
-        lng: point.lng
+        lat: point.location.lat,
+        lng: point.location.lng
       });
 
-      marker.setIcon(defaultCustomIcon).addTo(map);
+      marker
+        .setIcon(
+          point.id !== hoveredCard
+            ? defaultCustomIcon
+            : currentCustomIcon,
+        )
+        .addTo(map);
     }
     );
   }
