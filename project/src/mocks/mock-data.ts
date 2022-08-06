@@ -61,8 +61,8 @@ export const cities:cityType[] = [
     name: 'Paris',
     cityId: 0,
     location: {
-      lat: 40.816881,
-      lng: -73.872768,
+      lat: 48.8534,
+      lng: 2.3488,
       zoom: 10,
     }
   },
@@ -70,8 +70,8 @@ export const cities:cityType[] = [
     name: 'Cologne',
     cityId: 1,
     location: {
-      lat: 40.814909,
-      lng: -73.830682,
+      lat: 50.9333,
+      lng: 6.95,
       zoom: 10,
     }
   },
@@ -79,8 +79,8 @@ export const cities:cityType[] = [
     name: 'Brussels',
     cityId: 2,
     location: {
-      lat: 40.862413,
-      lng: -73.879357,
+      lat: 50.8504,
+      lng: 4.34878,
       zoom: 10
     }
   },
@@ -88,8 +88,8 @@ export const cities:cityType[] = [
     name: 'Amsterdam',
     cityId: 3,
     location: {
-      lat: 40.870817,
-      lng: -73.927112,
+      lat: 52.374,
+      lng: 4.88969,
       zoom: 10
     }
   },
@@ -97,8 +97,8 @@ export const cities:cityType[] = [
     name: 'Hamburg',
     cityId: 4,
     location: {
-      lat: 40.877312,
-      lng: -73.807182,
+      lat: 53.5753,
+      lng: 10.0153,
       zoom: 10
     }
   },
@@ -106,8 +106,8 @@ export const cities:cityType[] = [
     name: 'Dusseldorf',
     cityId: 0,
     location: {
-      lat: 40.862412,
-      lng: -73.879356,
+      lat: 51.2217,
+      lng: 6.77616,
       zoom: 10
     }
   },
@@ -122,7 +122,7 @@ export const offers: offerType[] = [
     type: 'apartment',
     isPremium: true,
     stars: 3,
-    city: cities[1],
+    city: cities[0],
     bedrooms: 2,
     guestsMax: 7,
     price: 4534,
@@ -134,6 +134,11 @@ export const offers: offerType[] = [
       isPro: true,
     },
     reviews: [reviews[0], reviews[1]],
+    location: {
+      lat: 48.85341,
+      lng: 2.34881,
+      zoom: 10
+    }
   },
   {
     id: generateId(),
@@ -155,6 +160,11 @@ export const offers: offerType[] = [
       isPro: false,
     },
     reviews: [reviews[1], reviews[2]],
+    location: {
+      lat: 50.93331,
+      lng: 6.951,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -164,7 +174,7 @@ export const offers: offerType[] = [
     type: 'villa',
     isPremium: true,
     stars: 4,
-    city: cities[2],
+    city: cities[1],
     bedrooms: 5,
     guestsMax: 14,
     price: 15757,
@@ -176,6 +186,11 @@ export const offers: offerType[] = [
       isPro: true,
     },
     reviews: [reviews[2], reviews[3]],
+    location: {
+      lat: 50.99,
+      lng: 6.952,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -197,6 +212,11 @@ export const offers: offerType[] = [
       isPro: false,
     },
     reviews: [reviews[3], reviews[4]],
+    location: {
+      lat: 52.3741,
+      lng: 4.889691,
+      zoom: 10
+    }
   },
 ];
 
@@ -233,4 +253,52 @@ export const mainCity:City = {
   lat: 40.835292,
   lng: -73.916236,
   zoom: 10
+};
+
+export const sortPlacesToStay = (sortType:string, arrayForSort:offerType[]) => {
+  switch (sortType) {
+    case 'Price: low to high':
+      return arrayForSort.sort(sortPricesLowToHigh);
+      break;
+    case 'Price: high to low':
+      return arrayForSort.sort(sortPricesHighToLow);
+      break;
+    case 'Top rated first':
+      return arrayForSort.sort(sortRate);
+      break;
+    case 'Popular':
+      return arrayForSort;
+      break;
+    default:
+  }
+};
+
+const sortPricesLowToHigh = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price > priceB.price) {
+    return 1;
+  }
+  if (priceA.price < priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortPricesHighToLow = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price < priceB.price) {
+    return 1;
+  }
+  if (priceA.price > priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortRate = (rateA:offerType, rateB:offerType) => {
+  if (rateA.stars < rateB.stars) {
+    return 1;
+  }
+  if (rateA.stars > rateB.stars) {
+    return -1;
+  }
+  return 0;
 };

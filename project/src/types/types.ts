@@ -20,6 +20,11 @@ export type offerType = {
   isFavorite: boolean,
   ownerInfo: ownerType,
   reviews: reviewType[],
+  location: {
+    lat: number,
+    lng: number,
+    zoom: number
+  }
 }
 
 export type reviewType = {
@@ -47,6 +52,16 @@ export type City = {
   lat: number;
   lng: number;
   zoom: number;
+};
+
+export type mainCity = {
+  name: string,
+  cityId: number,
+  location: {
+    lat: number,
+    lng: number,
+    zoom: number
+  }
 };
 
 export type Point = {
