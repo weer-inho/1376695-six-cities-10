@@ -1,14 +1,10 @@
 import {useRef} from 'react';
 import useMap from './useMap';
 import {Icon, Marker} from 'leaflet';
-import {City, Points} from '../../types/types';
 import 'leaflet/dist/leaflet.css';
-import {URL_MARKER_DEFAULT} from '../../const';
-
-type MapProps = {
-  city: City;
-  points: Points;
-};
+import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import {useAppSelector} from '../../hooks';
+import {offerType} from '../../types/types';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -16,25 +12,40 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map(props: MapProps):JSX.Element {
-  const {city, points} = props;
+const currentCustomIcon = new Icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+
+function Map():JSX.Element {
+  const {offers, mainCity, hoveredCard} = useAppSelector((state) => state);
+  const placesToStay:offerType[] = [];
+  offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer) : undefined);
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, mainCity);
 
   if (map) {
-    points.forEach((point) => {
+    placesToStay.forEach((point) => {
       const marker = new Marker({
-        lat: point.lat,
-        lng: point.lng
+        lat: point.location.lat,
+        lng: point.location.lng
       });
 
-      marker.setIcon(defaultCustomIcon).addTo(map);
+      marker
+        .setIcon(
+          point.id !== hoveredCard
+            ? defaultCustomIcon
+            : currentCustomIcon,
+        )
+        .addTo(map);
     }
     );
   }
 
-  return <section className={'cities__map map'} style={{height: '500px'}} ref={mapRef}></section>;
+  return <section className={'cities__map map'} style={{height: '600px'}} ref={mapRef}></section>;
 }
 
 export default Map;

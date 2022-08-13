@@ -40,15 +40,77 @@ export const reviews:reviewType[] = [
     date: 'May 2019',
     reviewText: 'С другой стороны консультация с профессионалами из IT обеспечивает широкому кругу специалистов участие в формировании ключевых компонентов планируемого обновления. ',
   },
+  {
+    avatar: 'https://picsum.photos/id/31/54/54',
+    name: 'Max',
+    score: 1,
+    date: 'Januar 2017',
+    reviewText: 'Соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует подготовке и реализации системы масштабного изменения ряда параметров. Дорогие друзья, курс на социально-ориентированный национальный проект',
+  },
+  {
+    avatar: 'https://picsum.photos/id/65/54/54',
+    name: 'Fish',
+    score: 5,
+    date: 'Febraury 2022',
+    reviewText: 'Дорогие друзья, новая модель организационной деятельности создаёт предпосылки качественно новых шагов для экономической целесообразности принимаемых решений? Задача организации, в особенности же курс на социально-ориентированный',
+  },
 ];
 
 export const cities:cityType[] = [
-  {cityName: 'Paris', cityId: 0},
-  {cityName: 'Cologne', cityId: 1},
-  {cityName: 'Brussels', cityId: 2},
-  {cityName: 'Amsterdam', cityId: 3},
-  {cityName: 'Hamburg', cityId: 4},
-  {cityName: 'Dusseldord', cityId: 5},
+  {
+    name: 'Paris',
+    cityId: 0,
+    location: {
+      lat: 48.8534,
+      lng: 2.3488,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Cologne',
+    cityId: 1,
+    location: {
+      lat: 50.9333,
+      lng: 6.95,
+      zoom: 10,
+    }
+  },
+  {
+    name: 'Brussels',
+    cityId: 2,
+    location: {
+      lat: 50.8504,
+      lng: 4.34878,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Amsterdam',
+    cityId: 3,
+    location: {
+      lat: 52.374,
+      lng: 4.88969,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Hamburg',
+    cityId: 4,
+    location: {
+      lat: 53.5753,
+      lng: 10.0153,
+      zoom: 10
+    }
+  },
+  {
+    name: 'Dusseldorf',
+    cityId: 0,
+    location: {
+      lat: 51.2217,
+      lng: 6.77616,
+      zoom: 10
+    }
+  },
 ];
 
 export const offers: offerType[] = [
@@ -60,7 +122,7 @@ export const offers: offerType[] = [
     type: 'apartment',
     isPremium: true,
     stars: 3,
-    city: cities[1],
+    city: cities[0],
     bedrooms: 2,
     guestsMax: 7,
     price: 4534,
@@ -71,7 +133,12 @@ export const offers: offerType[] = [
       name: 'Suzan',
       isPro: true,
     },
-    reviews: reviews[0],
+    reviews: [reviews[0], reviews[1]],
+    location: {
+      lat: 48.85341,
+      lng: 2.34881,
+      zoom: 10
+    }
   },
   {
     id: generateId(),
@@ -92,7 +159,12 @@ export const offers: offerType[] = [
       name: 'Max',
       isPro: false,
     },
-    reviews: reviews[1],
+    reviews: [reviews[1], reviews[2]],
+    location: {
+      lat: 50.93331,
+      lng: 6.951,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -102,7 +174,7 @@ export const offers: offerType[] = [
     type: 'villa',
     isPremium: true,
     stars: 4,
-    city: cities[2],
+    city: cities[1],
     bedrooms: 5,
     guestsMax: 14,
     price: 15757,
@@ -113,7 +185,12 @@ export const offers: offerType[] = [
       name: 'Sergei',
       isPro: true,
     },
-    reviews: reviews[2],
+    reviews: [reviews[2], reviews[3]],
+    location: {
+      lat: 50.99,
+      lng: 6.952,
+      zoom: 10,
+    }
   },
   {
     id: generateId(),
@@ -134,28 +211,33 @@ export const offers: offerType[] = [
       name: 'Nika',
       isPro: false,
     },
-    reviews: reviews[3],
+    reviews: [reviews[3], reviews[4]],
+    location: {
+      lat: 52.3741,
+      lng: 4.889691,
+      zoom: 10
+    }
   },
 ];
 
 export const POINTS: Points = [
   {
-    title: 'Саундвью',
+    title: 'Aliquam sed nisi volutpat, tempus lacus in, ultricies mi',
     lat: 40.816881,
-    lng: -73.872768
+    lng: -73.872768,
   },
   {
-    title: 'Ферри Поинт',
+    title: 'Donec pulvinar felis sed ante maximus fringilla',
     lat: 40.814909,
     lng: -73.830682
   },
   {
-    title: 'Бронкс',
+    title: 'Morbi congue porta ex, id convallis est mattis nec.',
     lat: 40.862413,
     lng: -73.879357
   },
   {
-    title: 'Инвуд-Хилл',
+    title: 'Donec viverra orci dui, eu placerat arcu malesuada ac.',
     lat: 40.870817,
     lng: -73.927112
   },
@@ -171,4 +253,52 @@ export const mainCity:City = {
   lat: 40.835292,
   lng: -73.916236,
   zoom: 10
+};
+
+export const sortPlacesToStay = (sortType:string, arrayForSort:offerType[]) => {
+  switch (sortType) {
+    case 'Price: low to high':
+      return arrayForSort.sort(sortPricesLowToHigh);
+      break;
+    case 'Price: high to low':
+      return arrayForSort.sort(sortPricesHighToLow);
+      break;
+    case 'Top rated first':
+      return arrayForSort.sort(sortRate);
+      break;
+    case 'Popular':
+      return arrayForSort;
+      break;
+    default:
+  }
+};
+
+const sortPricesLowToHigh = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price > priceB.price) {
+    return 1;
+  }
+  if (priceA.price < priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortPricesHighToLow = (priceA:offerType, priceB:offerType) => {
+  if (priceA.price < priceB.price) {
+    return 1;
+  }
+  if (priceA.price > priceB.price) {
+    return -1;
+  }
+  return 0;
+};
+
+const sortRate = (rateA:offerType, rateB:offerType) => {
+  if (rateA.stars < rateB.stars) {
+    return 1;
+  }
+  if (rateA.stars > rateB.stars) {
+    return -1;
+  }
+  return 0;
 };
