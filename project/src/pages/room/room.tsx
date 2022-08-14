@@ -85,7 +85,7 @@ function Room(): JSX.Element {
             <div className='property__gallery-container container'>
               <div className='property__gallery'>
                 {
-                  offerData?.photos.map((photo, index) =>
+                  offerData?.images.map((photo, index) =>
                     (
                       <div key={photo} className='property__image-wrapper'>
                         <img
