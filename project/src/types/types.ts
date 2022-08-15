@@ -6,7 +6,7 @@ export type ownerType = {
 
 export type offerType = {
   id: string,
-  photos: string[],
+  images: string[],
   title: string,
   description: string;
   type: string,
@@ -20,11 +20,7 @@ export type offerType = {
   isFavorite: boolean,
   ownerInfo: ownerType,
   reviews: reviewType[],
-  location: {
-    lat: number,
-    lng: number,
-    zoom: number
-  }
+  location: LocationType,
 }
 
 export type reviewType = {
@@ -41,9 +37,11 @@ export type cityType = {
   cityId: number,
 }
 
+export type Cities = offerType[];
+
 export type LocationType = {
-  lat: number,
-  lng: number,
+  latitude: number,
+  longitude: number,
   zoom: number,
 }
 

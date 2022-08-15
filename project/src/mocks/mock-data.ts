@@ -61,8 +61,8 @@ export const cities:cityType[] = [
     name: 'Paris',
     cityId: 0,
     location: {
-      lat: 48.8534,
-      lng: 2.3488,
+      latitude: 48.8534,
+      longitude: 2.3488,
       zoom: 10,
     }
   },
@@ -70,8 +70,8 @@ export const cities:cityType[] = [
     name: 'Cologne',
     cityId: 1,
     location: {
-      lat: 50.9333,
-      lng: 6.95,
+      latitude: 50.9333,
+      longitude: 6.95,
       zoom: 10,
     }
   },
@@ -79,8 +79,8 @@ export const cities:cityType[] = [
     name: 'Brussels',
     cityId: 2,
     location: {
-      lat: 50.8504,
-      lng: 4.34878,
+      latitude: 50.8504,
+      longitude: 4.34878,
       zoom: 10
     }
   },
@@ -88,8 +88,8 @@ export const cities:cityType[] = [
     name: 'Amsterdam',
     cityId: 3,
     location: {
-      lat: 52.374,
-      lng: 4.88969,
+      latitude: 52.374,
+      longitude: 4.88969,
       zoom: 10
     }
   },
@@ -97,8 +97,8 @@ export const cities:cityType[] = [
     name: 'Hamburg',
     cityId: 4,
     location: {
-      lat: 53.5753,
-      lng: 10.0153,
+      latitude: 53.5753,
+      longitude: 10.0153,
       zoom: 10
     }
   },
@@ -106,8 +106,8 @@ export const cities:cityType[] = [
     name: 'Dusseldorf',
     cityId: 0,
     location: {
-      lat: 51.2217,
-      lng: 6.77616,
+      latitude: 51.2217,
+      longitude: 6.77616,
       zoom: 10
     }
   },
@@ -116,7 +116,7 @@ export const cities:cityType[] = [
 export const offers: offerType[] = [
   {
     id: generateId(),
-    photos: ['https://picsum.photos/id//1/260/200','https://picsum.photos/id//2/260/200','https://picsum.photos/id//3/260/200','https://picsum.photos/id//4/260/200'],
+    images: ['https://picsum.photos/id//1/260/200','https://picsum.photos/id//2/260/200','https://picsum.photos/id//3/260/200','https://picsum.photos/id//4/260/200'],
     title: 'Aliquam sed nisi volutpat, tempus lacus in, ultricies mi',
     description: 'Etiam semper eu dolor in bibendum. Aliquam non hendrerit nisl. Mauris tincidunt tellus non ante fermentum tempus. Sed ultrices lorem nisl, vel commodo ante volutpat nec. Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. Nam porttitor iaculis dui at ultrices. Mauris a laoreet dolor. Fusce turpis risus, sodales vulputate lorem at, vehicula placerat purus. Ut nec laoreet nisl.',
     type: 'apartment',
@@ -135,14 +135,14 @@ export const offers: offerType[] = [
     },
     reviews: [reviews[0], reviews[1]],
     location: {
-      lat: 48.85341,
-      lng: 2.34881,
+      latitude: 48.85341,
+      longitude: 2.34881,
       zoom: 10
     }
   },
   {
     id: generateId(),
-    photos: ['https://picsum.photos/id//5/260/200','https://picsum.photos/id//6/260/200','https://picsum.photos/id//7/260/200','https://picsum.photos/id//8/260/200'],
+    images: ['https://picsum.photos/id//5/260/200','https://picsum.photos/id//6/260/200','https://picsum.photos/id//7/260/200','https://picsum.photos/id//8/260/200'],
     title: 'Donec pulvinar felis sed ante maximus fringilla',
     description: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque id finibus tellus',
     type: 'flat',
@@ -161,14 +161,14 @@ export const offers: offerType[] = [
     },
     reviews: [reviews[1], reviews[2]],
     location: {
-      lat: 50.93331,
-      lng: 6.951,
+      latitude: 50.93331,
+      longitude: 6.951,
       zoom: 10,
     }
   },
   {
     id: generateId(),
-    photos: ['https://picsum.photos/id//9/260/200','https://picsum.photos/id//10/260/200','https://picsum.photos/id//11/260/200','https://picsum.photos/id//12/260/200'],
+    images: ['https://picsum.photos/id//9/260/200','https://picsum.photos/id//10/260/200','https://picsum.photos/id//11/260/200','https://picsum.photos/id//12/260/200'],
     title: 'Morbi congue porta ex, id convallis est mattis nec.',
     description: 'Sed vitae nunc vitae massa varius aliquam sit amet id ante. Maecenas at accumsan quam. Proin quis enim vulputate, suscipit dui non, luctus justo.',
     type: 'villa',
@@ -187,14 +187,14 @@ export const offers: offerType[] = [
     },
     reviews: [reviews[2], reviews[3]],
     location: {
-      lat: 50.99,
-      lng: 6.952,
+      latitude: 50.99,
+      longitude: 6.952,
       zoom: 10,
     }
   },
   {
     id: generateId(),
-    photos: ['https://picsum.photos/id//13/260/200','https://picsum.photos/id//14/260/200','https://picsum.photos/id//15/260/200','https://picsum.photos/id//16/260/200'],
+    images: ['https://picsum.photos/id//13/260/200','https://picsum.photos/id//14/260/200','https://picsum.photos/id//15/260/200','https://picsum.photos/id//16/260/200'],
     title: 'Donec viverra orci dui, eu placerat arcu malesuada ac.',
     description: 'Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. ',
     type: 'atelier',
@@ -213,8 +213,8 @@ export const offers: offerType[] = [
     },
     reviews: [reviews[3], reviews[4]],
     location: {
-      lat: 52.3741,
-      lng: 4.889691,
+      latitude: 52.3741,
+      longitude: 4.889691,
       zoom: 10
     }
   },

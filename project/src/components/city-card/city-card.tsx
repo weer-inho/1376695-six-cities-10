@@ -30,7 +30,7 @@ function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX
         <a href='#xxx'>
           <img
             className='place-card__image'
-            src={offer.photos[0]}
+            src={offer.images[0]}
             width={260}
             height={200}
             alt='Place'
@@ -42,7 +42,7 @@ function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX
           <div className='place-card__price'>
             <b className='place-card__price-value'>€{offer.price}</b>
             <span className='place-card__price-text'>
-              /&nbsp;night
+              {'/&nbsp;night'}
             </span>
           </div>
           <button

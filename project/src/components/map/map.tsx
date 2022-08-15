@@ -4,7 +4,7 @@ import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {offerType} from '../../types/types';
+// import {offerType} from '../../types/types';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -21,8 +21,7 @@ const currentCustomIcon = new Icon({
 
 function Map():JSX.Element {
   const {offers, mainCity, hoveredCard} = useAppSelector((state) => state);
-  const placesToStay:offerType[] = [];
-  offers.forEach((offer) => offer.city.name === mainCity.name ? placesToStay.push(offer) : undefined);
+  const placesToStay = offers.filter((offer) => offer.city.name === mainCity.name);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mainCity);
@@ -30,8 +29,8 @@ function Map():JSX.Element {
   if (map) {
     placesToStay.forEach((point) => {
       const marker = new Marker({
-        lat: point.location.lat,
-        lng: point.location.lng
+        lat: point.location.latitude,
+        lng: point.location.longitude
       });
 
       marker
