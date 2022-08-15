@@ -1,11 +1,11 @@
-import {mainCity} from '../../types/types';
+import {cityType} from '../../types/types';
 import { Map, TileLayer } from 'leaflet';
 
-export const getMapInstance = (container: HTMLElement, city: mainCity): Map => {
+export const getMapInstance = (container: HTMLElement, city: cityType): Map => {
   const instance = new Map(container, {
     center: {
-      lat: city.location.lat,
-      lng: city.location.lng
+      lat: city.location.latitude,
+      lng: city.location.longitude
     },
     zoom: 10
   });
