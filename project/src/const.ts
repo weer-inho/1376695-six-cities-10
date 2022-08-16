@@ -20,3 +20,6 @@ export const URL_MARKER_CURRENT =
 export enum APIRoute {
   Hotels = '/hotels',
 }
+
+export const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
+export const REQUEST_TIMEOUT = 5000;

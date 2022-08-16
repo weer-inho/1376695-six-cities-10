@@ -12,9 +12,13 @@ export const fetchCitiesAction = createAsyncThunk<void, undefined, {
   }>(
     'data/fetchQuestions',
     async (_arg, {dispatch, extra: api}) => {
-      const {data} = await api.get<offerType[]>(APIRoute.Hotels);
       dispatch(setDataLoadedStatus(true));
-      dispatch(loadCities(data));
-      dispatch(setDataLoadedStatus(false));
+      try{
+        const {data} = await api.get<offerType[]>(APIRoute.Hotels);
+        dispatch(loadCities(data));
+      }
+      finally{
+        dispatch(setDataLoadedStatus(false));
+      }
     },
   );
