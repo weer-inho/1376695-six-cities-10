@@ -38,7 +38,7 @@ function AuthStatus(): JSX.Element {
         </li>
         <li className='header__nav-item'>
           <Link to={AppRoot.Login}>
-            <span className='header__signout'>Sign out</span>
+            <span className='header__signout'>Sign in</span>
           </Link>
         </li>
       </ul>
