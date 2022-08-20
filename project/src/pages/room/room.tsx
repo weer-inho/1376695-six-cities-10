@@ -5,9 +5,12 @@ import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
 import OtherPlaces from '../../components/other-places/other-places';
 import {useAppSelector} from '../../hooks';
+import {fetchOfferAction} from '../../store/api-actions';
+import {store} from '../../store/index';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function Room(): JSX.Element {
-  const {offers, points} = useAppSelector((state) => state);
+  const {offers, points, currentCity, isDataLoaded} = useAppSelector((state) => state);
   const params = useParams();
   const articles:offerType[] = [];
   offers.forEach((offer) => {
@@ -15,8 +18,14 @@ function Room(): JSX.Element {
       articles.push(offer);
     }
   });
-
   const offerData = offers.find((offer) => (offer.id === params.id));
+  store.dispatch(fetchOfferAction(params.id));
+  // eslint-disable-next-line no-console
+  console.log(currentCity);
+
+  if (isDataLoaded) {
+    return (<LoadingScreen />);
+  }
 
   return (
     <>
@@ -105,7 +114,7 @@ function Room(): JSX.Element {
                 <div className='property__name-wrapper'>
                   <h1 className='property__name'>
                     {/*Beautiful &amp; luxurious studio at great location*/}
-                    {offerData?.title}
+                    {currentCity?.title}
                   </h1>
                   <button
                     className='property__bookmark-button button'
@@ -122,21 +131,21 @@ function Room(): JSX.Element {
                     <span style={{ width: '80%' }} />
                     <span className='visually-hidden'>Rating</span>
                   </div>
-                  <span className='property__rating-value rating__value'>{offerData?.stars}</span>
+                  <span className='property__rating-value rating__value'>{currentCity?.stars}</span>
                 </div>
                 <ul className='property__features'>
                   <li className='property__feature property__feature--entire'>
-                    {offerData?.type}
+                    {currentCity?.type}
                   </li>
                   <li className='property__feature property__feature--bedrooms'>
-                    {offerData?.bedrooms} Bedrooms
+                    {currentCity?.bedrooms} Bedrooms
                   </li>
                   <li className='property__feature property__feature--adults'>
-                    Max {offerData?.guestsMax} adults
+                    Max {currentCity?.guestsMax} adults
                   </li>
                 </ul>
                 <div className='property__price'>
-                  <b className='property__price-value'>€{offerData?.price}</b>
+                  <b className='property__price-value'>€{currentCity?.price}</b>
                   <span className='property__price-text'>&nbsp;night</span>
                 </div>
                 <div className='property__inside'>
@@ -155,23 +164,23 @@ function Room(): JSX.Element {
                     <div className='property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper'>
                       <img
                         className='property__avatar user__avatar'
-                        src={offerData?.ownerInfo.avatar}
+                        src={currentCity?.host.avatarUrl}
                         width={74}
                         height={74}
                         alt='Host avatar'
                       />
                     </div>
-                    <span className='property__user-name'>{offerData?.ownerInfo.name}</span>
+                    <span className='property__user-name'>{currentCity?.host.name}</span>
                     <span className='property__user-status'>Pro</span>
                   </div>
                   <div className='property__description'>
                     <p className='property__text'>
-                      {offerData?.description}
+                      {currentCity?.description}
                     </p>
                   </div>
                 </div>
                 <section className='property__reviews reviews'>
-                  <CommentList reviews={offerData?.reviews}/>
+                  <CommentList reviews={currentCity?.reviews}/>
                   <CommentForm />
                 </section>
               </div>

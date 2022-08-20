@@ -1,5 +1,5 @@
 export type ownerType = {
-  avatar: string,
+  avatarUrl: string,
   name: string,
   isPro: boolean,
 }
@@ -18,7 +18,7 @@ export type offerType = {
   price: number,
   householdItems: string[],
   isFavorite: boolean,
-  ownerInfo: ownerType,
+  host: ownerType,
   reviews: reviewType[],
   location: LocationType,
 }

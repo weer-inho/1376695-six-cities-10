@@ -128,8 +128,8 @@ export const offers: offerType[] = [
     price: 4534,
     householdItems: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
     isFavorite: true,
-    ownerInfo: {
-      avatar: 'https://picsum.photos/id//1/74/74',
+    host: {
+      avatarUrl: 'https://picsum.photos/id//1/74/74',
       name: 'Suzan',
       isPro: true,
     },
@@ -154,8 +154,8 @@ export const offers: offerType[] = [
     price: 3576,
     householdItems: ['Wifi', 'Kitchen', 'Cable TV'],
     isFavorite: false,
-    ownerInfo: {
-      avatar: 'https://picsum.photos/id//2/74/74',
+    host: {
+      avatarUrl: 'https://picsum.photos/id//2/74/74',
       name: 'Max',
       isPro: false,
     },
@@ -180,8 +180,8 @@ export const offers: offerType[] = [
     price: 15757,
     householdItems: ['Wifi', 'Kitchen', 'Cable TV', 'Pool', 'Backyard'],
     isFavorite: true,
-    ownerInfo: {
-      avatar: 'https://picsum.photos/id//3/74/74',
+    host: {
+      avatarUrl: 'https://picsum.photos/id//3/74/74',
       name: 'Sergei',
       isPro: true,
     },
@@ -206,8 +206,8 @@ export const offers: offerType[] = [
     price: 3435,
     householdItems: ['Wifi', 'Kitchen', 'Cable TV', 'Balcony'],
     isFavorite: true,
-    ownerInfo: {
-      avatar: 'https://picsum.photos/id//4/74/74',
+    host: {
+      avatarUrl: 'https://picsum.photos/id//4/74/74',
       name: 'Nika',
       isPro: false,
     },

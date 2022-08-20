@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { POINTS, cities} from '../mocks/mock-data';
-import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus, requireAuthorization} from './action';
+import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus, requireAuthorization, loadOffer} from './action';
 import { offerType } from '../types/types';
 import {AuthorizationStatus} from '../const';
 
@@ -11,6 +11,7 @@ const initialState = {
   mainCity: cities[1],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
+  currentCity: {} as offerType,
   sorting: 'Popular',
 };
 
@@ -28,6 +29,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadCities, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(loadOffer, (state, action) => {
+      state.currentCity = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
