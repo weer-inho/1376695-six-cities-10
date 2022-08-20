@@ -1,13 +1,15 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { POINTS, cities} from '../mocks/mock-data';
-import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus} from './action';
+import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus, requireAuthorization} from './action';
 import { offerType } from '../types/types';
+import {AuthorizationStatus} from '../const';
 
 const initialState = {
   hoveredCard:  '',
   offers: [] as offerType[],
   points: POINTS,
   mainCity: cities[1],
+  authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
   sorting: 'Popular',
 };
@@ -29,6 +31,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     })
     .addCase(changeHoveredId, (state, action) => {
       state.hoveredCard = action.payload;

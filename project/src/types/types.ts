@@ -68,4 +68,15 @@ export type Point = {
   lng: number;
 };
 
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};
+
 export type Points = Point[];
