@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 type CityCardType = {
   onHovered: () => void;
-  onDeactivated: () => void;
   offer: offerType;
   isActive: boolean;
 }
@@ -18,11 +17,10 @@ export function returnPremium(isPremium: boolean | undefined):JSX.Element | unde
   return undefined;
 }
 
-function CityCard({offer, onHovered, onDeactivated, isActive}: CityCardType):JSX.Element {
+function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
   return (
     <article
       onMouseEnter={onHovered}
-      onMouseLeave={onDeactivated}
       className='cities__card place-card'
     >
       {returnPremium(offer.isPremium)};

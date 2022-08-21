@@ -1,7 +1,7 @@
 import {cityType, offerType, reviewType, Points, City} from '../types/types';
 
-export function generateId():string {
-  return `id${Math.random().toString(16).slice(2)}`;
+export function generateId():number {
+  return Math.floor(Math.random() * 100);
 }
 
 export const reviews:reviewType[] = [
@@ -126,7 +126,7 @@ export const offers: offerType[] = [
     bedrooms: 2,
     guestsMax: 7,
     price: 4534,
-    householdItems: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
+    goods: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
     isFavorite: true,
     host: {
       avatarUrl: 'https://picsum.photos/id//1/74/74',
@@ -152,7 +152,7 @@ export const offers: offerType[] = [
     bedrooms: 1,
     guestsMax: 4,
     price: 3576,
-    householdItems: ['Wifi', 'Kitchen', 'Cable TV'],
+    goods: ['Wifi', 'Kitchen', 'Cable TV'],
     isFavorite: false,
     host: {
       avatarUrl: 'https://picsum.photos/id//2/74/74',
@@ -178,7 +178,7 @@ export const offers: offerType[] = [
     bedrooms: 5,
     guestsMax: 14,
     price: 15757,
-    householdItems: ['Wifi', 'Kitchen', 'Cable TV', 'Pool', 'Backyard'],
+    goods: ['Wifi', 'Kitchen', 'Cable TV', 'Pool', 'Backyard'],
     isFavorite: true,
     host: {
       avatarUrl: 'https://picsum.photos/id//3/74/74',
@@ -204,7 +204,7 @@ export const offers: offerType[] = [
     bedrooms: 1,
     guestsMax: 2,
     price: 3435,
-    householdItems: ['Wifi', 'Kitchen', 'Cable TV', 'Balcony'],
+    goods: ['Wifi', 'Kitchen', 'Cable TV', 'Balcony'],
     isFavorite: true,
     host: {
       avatarUrl: 'https://picsum.photos/id//4/74/74',

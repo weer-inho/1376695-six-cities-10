@@ -5,7 +5,7 @@ export type ownerType = {
 }
 
 export type offerType = {
-  id: string,
+  id: number,
   images: string[],
   title: string,
   description: string;
@@ -16,7 +16,7 @@ export type offerType = {
   bedrooms: number,
   guestsMax: number,
   price: number,
-  householdItems: string[],
+  goods: string[],
   isFavorite: boolean,
   host: ownerType,
   reviews: reviewType[],

@@ -32,14 +32,8 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
 }>(
   'data/fetchOffer',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setDataLoadedStatus(true));
-    try{
-      const {data} = await api.get<offerType>(`/hotels/${_arg}`);
-      dispatch(loadOffer(data));
-    }
-    finally{
-      dispatch(setDataLoadedStatus(false));
-    }
+    const {data} = await api.get<offerType>(`/hotels/${_arg}`);
+    dispatch(loadOffer(data));
   },
 );
 

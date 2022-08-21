@@ -21,7 +21,6 @@ function OtherPlaces({articles}:OtherPlacesProps):JSX.Element {
             return (
               <CityCard
                 onHovered={() => undefined}
-                onDeactivated={() => undefined}
                 key={keyValue}
                 offer={article}
                 isActive={false}

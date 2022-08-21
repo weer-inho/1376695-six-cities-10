@@ -1,30 +1,42 @@
 import { useParams } from 'react-router-dom';
-import {offerType} from '../../types/types';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
-import OtherPlaces from '../../components/other-places/other-places';
 import {useAppSelector} from '../../hooks';
 import {fetchOfferAction} from '../../store/api-actions';
-import {store} from '../../store/index';
-import LoadingScreen from '../loading-screen/loading-screen';
+import { AppDispatch, State } from '../../types/state';
+import Error from '../../components/error/error';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { offerType } from '../../types/types';
+import OtherPlaces from '../../components/other-places/other-places';
+
+const noOp = () => undefined;
+const dummeNearBy:offerType[] = [];
+const getCurrentCitySelector = (id:string | undefined) => {
+  if (typeof id !== 'string') {
+    return noOp;
+  }
+  const offerId = Number.parseInt(id, 10);
+  if (!Number.isInteger(offerId)) {
+    return noOp;
+  }
+  return(state:State) => state.offers.find((offer) => offerId === offer.id);
+
+};
 
 function Room(): JSX.Element {
-  const {offers, points, currentCity, isDataLoaded} = useAppSelector((state) => state);
-  const params = useParams();
-  const articles:offerType[] = [];
-  offers.forEach((offer) => {
-    if (points.find((point) => point.title === offer.title)) {
-      articles.push(offer);
+  const {id} = useParams();
+  const currentCity = useAppSelector(getCurrentCitySelector(id));
+  const dispatch:AppDispatch = useDispatch();
+  useEffect(() => {
+    if (typeof currentCity === 'undefined') {
+      dispatch(fetchOfferAction(id));
     }
-  });
-  const offerData = offers.find((offer) => (offer.id === params.id));
-  store.dispatch(fetchOfferAction(params.id));
-  // eslint-disable-next-line no-console
-  console.log(currentCity);
-
-  if (isDataLoaded) {
-    return (<LoadingScreen />);
+  },
+  [id, currentCity, dispatch]);
+  if (typeof currentCity === 'undefined') {
+    return (<Error />);
   }
 
   return (
@@ -94,7 +106,7 @@ function Room(): JSX.Element {
             <div className='property__gallery-container container'>
               <div className='property__gallery'>
                 {
-                  offerData?.images.map((photo, index) =>
+                  currentCity?.images.map((photo, index) =>
                     (
                       <div key={photo} className='property__image-wrapper'>
                         <img
@@ -110,7 +122,7 @@ function Room(): JSX.Element {
             </div>
             <div className='property__container container'>
               <div className='property__wrapper'>
-                {offerData?.isPremium ? <div className='property__mark'><span>Premium</span></div> : null}
+                {currentCity?.isPremium ? <div className='property__mark'><span>Premium</span></div> : null}
                 <div className='property__name-wrapper'>
                   <h1 className='property__name'>
                     {/*Beautiful &amp; luxurious studio at great location*/}
@@ -152,7 +164,7 @@ function Room(): JSX.Element {
                   <h2 className='property__inside-title'>Whats inside</h2>
                   <ul className='property__inside-list'>
                     {
-                      offerData?.householdItems.map((item) => (
+                      currentCity?.goods.map((item) => (
                         <li key={item} className='property__inside-item'>{item}</li>
                       ))
                     }
@@ -190,7 +202,7 @@ function Room(): JSX.Element {
             </section>
           </section>
           <div className='container'>
-            <OtherPlaces articles={articles}/>
+            <OtherPlaces articles={dummeNearBy}/>
           </div>
         </main>
       </div>
