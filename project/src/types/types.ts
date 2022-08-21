@@ -31,6 +31,19 @@ export type reviewType = {
   reviewText: string,
 }
 
+export type commentType = {
+  comment: string
+  date: string
+  id: number
+  rating: number
+  user: {
+    avatarUrl: string
+    id: number
+    isPro: boolean
+    name: string
+  }
+}
+
 export type cityType = {
   name: string,
   location: LocationType,

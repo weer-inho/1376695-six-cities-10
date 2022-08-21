@@ -3,7 +3,7 @@ import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks';
-import {fetchOfferAction} from '../../store/api-actions';
+import {fetchOfferAction, fetchOfferCommentsAction} from '../../store/api-actions';
 import { AppDispatch, State } from '../../types/state';
 import Error from '../../components/error/error';
 import { useEffect } from 'react';
@@ -35,6 +35,7 @@ function Room(): JSX.Element {
     }
   },
   [id, currentCity, dispatch]);
+  dispatch(fetchOfferCommentsAction(id));
   if (typeof currentCity === 'undefined') {
     return (<Error />);
   }
@@ -192,7 +193,7 @@ function Room(): JSX.Element {
                   </div>
                 </div>
                 <section className='property__reviews reviews'>
-                  <CommentList reviews={currentCity?.reviews}/>
+                  <CommentList />
                   <CommentForm />
                 </section>
               </div>

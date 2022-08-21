@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { POINTS, cities} from '../mocks/mock-data';
-import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus, requireAuthorization, loadOffer} from './action';
-import { offerType } from '../types/types';
+import {changeCity, changeHoveredId, changeSort, loadCities, setDataLoadedStatus, requireAuthorization, loadOffer, loadComments} from './action';
+import {commentType, offerType} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   mainCity: cities[1],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
+  lastComments: undefined as commentType[] | undefined,
   currentCity: undefined as offerType | undefined,
   sorting: 'Popular',
 };
@@ -32,6 +33,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffer, (state, action) => {
       state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);
+    })
+    .addCase(loadComments, (state, action) => {
+      state.lastComments = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;

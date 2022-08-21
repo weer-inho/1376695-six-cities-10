@@ -3,8 +3,8 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import {APIRoute, AppRoot} from '../const';
 import {saveToken} from '../services/token';
-import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer } from './action';
-import { offerType, AuthData, UserData } from '../types/types';
+import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments } from './action';
+import {offerType, AuthData, UserData, commentType} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
 export const fetchCitiesAction = createAsyncThunk<void, undefined, {
@@ -34,6 +34,18 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<offerType>(`/hotels/${_arg}`);
     dispatch(loadOffer(data));
+  },
+);
+
+export const fetchOfferCommentsAction = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchOffer',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<commentType[]>(`/comments/${_arg}`);
+    dispatch(loadComments(data));
   },
 );
 
