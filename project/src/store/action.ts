@@ -10,5 +10,6 @@ export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStat
 export const loadCities = createAction<offerType[]>('data/fetchCities');
 export const loadOffer = createAction<offerType>('data/fetchOffer');
 export const loadComments = createAction<commentType[]>('data/fetchComments');
+export const loadOffersNearBy = createAction<offerType[]>('data/fetchOffersNearby');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const redirectToRoute = createAction<AppRoot>('redirectToRoute');

@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import {APIRoute, AppRoot} from '../const';
 import {saveToken} from '../services/token';
-import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments } from './action';
+import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments, loadOffersNearBy } from './action';
 import {offerType, AuthData, UserData, commentType} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
@@ -42,10 +42,22 @@ export const fetchOfferCommentsAction = createAsyncThunk<void, string | undefine
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchOffer',
+  'data/fetchOfferComments',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<commentType[]>(`/comments/${_arg}`);
     dispatch(loadComments(data));
+  },
+);
+
+export const fetchOffersNearByAction = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchOffersNearBy',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<offerType[]>(`/hotels/${_arg}/nearBy`);
+    dispatch(loadOffersNearBy(data));
   },
 );
 

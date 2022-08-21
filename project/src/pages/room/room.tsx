@@ -3,16 +3,14 @@ import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks';
-import {fetchOfferAction, fetchOfferCommentsAction} from '../../store/api-actions';
+import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
 import { AppDispatch, State } from '../../types/state';
 import Error from '../../components/error/error';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { offerType } from '../../types/types';
 import OtherPlaces from '../../components/other-places/other-places';
 
 const noOp = () => undefined;
-const dummeNearBy:offerType[] = [];
 const getCurrentCitySelector = (id:string | undefined) => {
   if (typeof id !== 'string') {
     return noOp;
@@ -36,6 +34,7 @@ function Room(): JSX.Element {
   },
   [id, currentCity, dispatch]);
   dispatch(fetchOfferCommentsAction(id));
+  dispatch(fetchOffersNearByAction(id));
   if (typeof currentCity === 'undefined') {
     return (<Error />);
   }
@@ -203,7 +202,7 @@ function Room(): JSX.Element {
             </section>
           </section>
           <div className='container'>
-            <OtherPlaces articles={dummeNearBy}/>
+            <OtherPlaces />
           </div>
         </main>
       </div>
