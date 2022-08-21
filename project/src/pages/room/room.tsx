@@ -32,10 +32,10 @@ function Room(): JSX.Element {
     if (typeof currentCity === 'undefined') {
       dispatch(fetchOfferAction(id));
     }
+    dispatch(fetchOfferCommentsAction(id));
+    dispatch(fetchOffersNearByAction(id));
   },
   [id, currentCity, dispatch]);
-  dispatch(fetchOfferCommentsAction(id));
-  dispatch(fetchOffersNearByAction(id));
   if (typeof currentCity === 'undefined') {
     return (<Error />);
   }
