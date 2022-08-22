@@ -4,7 +4,7 @@ import { AxiosInstance } from 'axios';
 import {APIRoute, AppRoot} from '../const';
 import {saveToken} from '../services/token';
 import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments, loadOffersNearBy } from './action';
-import {offerType, AuthData, UserData, commentType} from '../types/types';
+import {offerType, AuthData, UserData, commentType, CommentData} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
 export const fetchCitiesAction = createAsyncThunk<void, undefined, {
@@ -72,6 +72,18 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoot.Main));
+  },
+);
+
+export const createCommentAction = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/login',
+  async ({offerNumber, comment: string, rating: number}, {dispatch, extra: api}) => {
+    const {data} = await api.post<commentType[]>(`/comments/${offerNumber}`, {comment: string, rating: number});
+    dispatch(loadComments(data));
   },
 );
 

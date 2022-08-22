@@ -1,10 +1,14 @@
-import {ChangeEvent, useState, useEffect} from 'react';
-import {useAppSelector} from '../../hooks';
+import {ChangeEvent, useState, useEffect, FormEvent} from 'react';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
+import {CommentData} from '../../types/types';
+import {createCommentAction} from '../../store/api-actions';
+import {useParams} from 'react-router-dom';
 
 const ratingNumbers = [5, 4, 3, 2, 1];
 
 function CommentForm():JSX.Element {
+  const {id} = useParams();
   const {authorizationStatus} = useAppSelector((state) => state);
   const [formData, setFormData] = useState({
     review: '',
@@ -21,9 +25,32 @@ function CommentForm():JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (commentData: CommentData) => {
+    dispatch(createCommentAction(commentData));
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (!isButtonDisabled) {
+      onSubmit({
+        offerNumber: id,
+        comment: formData.review,
+        rating: formData.rating,
+      });
+    }
+  };
+
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
-      <form className='reviews__form form' action='#' method='post'>
+      <form
+        onSubmit={handleSubmit}
+        className='reviews__form form'
+        action='#'
+        method='post'
+      >
         <label className='reviews__label form__label' htmlFor='review'>
           Your review
         </label>

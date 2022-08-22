@@ -86,6 +86,12 @@ export type AuthData = {
   password: string;
 };
 
+export type CommentData = {
+  offerNumber: string | undefined;
+  comment: string;
+  rating: number | undefined;
+}
+
 export type UserData = {
   id: number;
   email: string;
