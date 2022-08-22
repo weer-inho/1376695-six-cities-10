@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useState, useEffect} from 'react';
 import {useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
 
@@ -8,8 +8,13 @@ function CommentForm():JSX.Element {
   const {authorizationStatus} = useAppSelector((state) => state);
   const [formData, setFormData] = useState({
     review: '',
-    rating: 0,
+    rating: undefined as number | undefined,
   });
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  useEffect(() => {
+    setIsButtonDisabled(!(formData.review.length >= 50 && formData.rating));
+  }, [formData]);
 
   const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
@@ -64,7 +69,7 @@ function CommentForm():JSX.Element {
           <button
             className='reviews__submit form__submit button'
             type='submit'
-            disabled={(formData.review.length < 50) ?? (formData.rating === 0)}
+            disabled={isButtonDisabled}
           >
             Submit
           </button>
