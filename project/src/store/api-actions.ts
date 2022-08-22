@@ -3,27 +3,63 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import {APIRoute, AppRoot} from '../const';
 import {saveToken} from '../services/token';
-import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute } from './action';
-import { offerType, AuthData, UserData } from '../types/types';
+import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments, loadOffersNearBy } from './action';
+import {offerType, AuthData, UserData, commentType, CommentData} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
 export const fetchCitiesAction = createAsyncThunk<void, undefined, {
-    dispatch: AppDispatch,
-    state: State,
-    extra: AxiosInstance
-  }>(
-    'data/fetchQuestions',
-    async (_arg, {dispatch, extra: api}) => {
-      dispatch(setDataLoadedStatus(true));
-      try{
-        const {data} = await api.get<offerType[]>(APIRoute.Hotels);
-        dispatch(loadCities(data));
-      }
-      finally{
-        dispatch(setDataLoadedStatus(false));
-      }
-    },
-  );
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchQuestions',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setDataLoadedStatus(true));
+    try{
+      const {data} = await api.get<offerType[]>(APIRoute.Hotels);
+      dispatch(loadCities(data));
+    }
+    finally{
+      dispatch(setDataLoadedStatus(false));
+    }
+  },
+);
+
+export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchOffer',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<offerType>(`/hotels/${_arg}`);
+    dispatch(loadOffer(data));
+  },
+);
+
+export const fetchOfferCommentsAction = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchOfferComments',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<commentType[]>(`/comments/${_arg}`);
+    dispatch(loadComments(data));
+  },
+);
+
+export const fetchOffersNearByAction = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchOffersNearBy',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<offerType[]>(`/hotels/${_arg}/nearBy`);
+    dispatch(loadOffersNearBy(data));
+  },
+);
 
 export const loginAction = createAsyncThunk<void, AuthData, {
   dispatch: AppDispatch,
@@ -36,6 +72,18 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoot.Main));
+  },
+);
+
+export const createCommentAction = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/login',
+  async ({offerNumber, comment: string, rating: number}, {dispatch, extra: api}) => {
+    const {data} = await api.post<commentType[]>(`/comments/${offerNumber}`, {comment: string, rating: number});
+    dispatch(loadComments(data));
   },
 );
 

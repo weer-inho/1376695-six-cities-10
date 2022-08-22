@@ -1,7 +1,7 @@
-import {reviewType} from '../../types/types';
+import {commentType} from '../../types/types';
 
 type CommentItemProps = {
-  review: reviewType;
+  review: commentType;
 }
 
 function CommentItem({review}: CommentItemProps):JSX.Element {
@@ -11,13 +11,13 @@ function CommentItem({review}: CommentItemProps):JSX.Element {
         <div className='reviews__avatar-wrapper user__avatar-wrapper'>
           <img
             className='reviews__avatar user__avatar'
-            src={review?.avatar}
+            src={review?.user.avatarUrl}
             width={54}
             height={54}
             alt='Reviews avatar'
           />
         </div>
-        <span className='reviews__user-name'>{review?.name}</span>
+        <span className='reviews__user-name'>{review?.user.name}</span>
       </div>
       <div className='reviews__info'>
         <div className='reviews__rating rating'>
@@ -27,7 +27,7 @@ function CommentItem({review}: CommentItemProps):JSX.Element {
           </div>
         </div>
         <p className='reviews__text'>
-          {review?.reviewText}
+          {review?.comment}
         </p>
         <time className='reviews__time' dateTime='2019-04-24'>
           April 2019
