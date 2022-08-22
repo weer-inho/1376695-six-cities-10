@@ -1,5 +1,5 @@
 import CommentItem from '../comment-item/comment-item';
-import {useAppSelector} from "../../hooks";
+import {useAppSelector} from '../../hooks';
 
 function CommentList(): JSX.Element {
   const {lastComments} = useAppSelector((state) => state);
