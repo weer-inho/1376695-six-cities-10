@@ -1,9 +1,11 @@
-import {useAppSelector} from '../../hooks';
+import {useAppSelector, useAppDispatch} from '../../hooks';
 import {AppRoot, AuthorizationStatus} from '../../const';
 import {Link} from 'react-router-dom';
+import {logoutAction} from '../../store/api-actions';
 
 function AuthStatus(): JSX.Element {
   const {authorizationStatus} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
@@ -14,14 +16,26 @@ function AuthStatus(): JSX.Element {
             href='#xxx'
           >
             <div className='header__avatar-wrapper user__avatar-wrapper'></div>
-            <span className='header__user-name user__name'>Oliver.conner@gmail.com</span>
+            <Link
+              to={AppRoot.Favorites}
+              className='header__user-name user__name'
+            >
+              Oliver.conner@gmail.com
+            </Link>
             <span className='header__favorite-count'>3</span>
           </a>
         </li>
         <li className='header__nav-item'>
-          <a className='header__nav-link' href='#xxx'>
-            <span className='header__signout'>Sign out</span>
-          </a>
+          <Link
+            className='header__nav-link'
+            to={AppRoot.Main}
+            onClick={(evt) => {
+              evt.preventDefault();
+              dispatch(logoutAction());
+            }}
+          >
+            Sign out
+          </Link>
         </li>
       </ul>
     );
