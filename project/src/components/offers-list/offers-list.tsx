@@ -1,6 +1,5 @@
 import CityCard from '../../components/city-card/city-card';
 import SortingForm from '../sorting-form/sorting-form';
-import {useState} from 'react';
 import {offerType} from '../../types/types';
 import {sortPlacesToStay} from '../../mocks/mock-data';
 import {useAppSelector, useAppDispatch} from '../../hooks';
@@ -8,7 +7,6 @@ import {changeHoveredId} from '../../store/action';
 
 function OffersList():JSX.Element {
   const dispatch = useAppDispatch();
-  const [cityHoveredId, setCityHoveredId] = useState(undefined as string | undefined);
   const {offers, sorting, mainCity} = useAppSelector((state) => state);
   const placesToStay:offerType[] = [];
 
@@ -26,10 +24,9 @@ function OffersList():JSX.Element {
             return (
               <CityCard
                 onHovered={() => dispatch(changeHoveredId(offer.id))}
-                onDeactivated={() => setCityHoveredId(undefined)}
                 key={keyValue}
                 offer={offer}
-                isActive={offer.id === cityHoveredId}
+                isActive={false}
               />
             );
           })

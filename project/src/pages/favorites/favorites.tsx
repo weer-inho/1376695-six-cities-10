@@ -92,7 +92,6 @@ function Favorites(): JSX.Element {
                               (
                                 <CityCard
                                   onHovered={() => undefined}
-                                  onDeactivated={() => undefined}
                                   key={offer.id}
                                   offer={offer}
                                   isActive={false}

@@ -1,11 +1,11 @@
 export type ownerType = {
-  avatar: string,
+  avatarUrl: string,
   name: string,
   isPro: boolean,
 }
 
 export type offerType = {
-  id: string,
+  id: number,
   images: string[],
   title: string,
   description: string;
@@ -16,9 +16,9 @@ export type offerType = {
   bedrooms: number,
   guestsMax: number,
   price: number,
-  householdItems: string[],
+  goods: string[],
   isFavorite: boolean,
-  ownerInfo: ownerType,
+  host: ownerType,
   reviews: reviewType[],
   location: LocationType,
 }
@@ -29,6 +29,19 @@ export type reviewType = {
   score: number,
   date: string,
   reviewText: string,
+}
+
+export type commentType = {
+  comment: string
+  date: string
+  id: number
+  rating: number
+  user: {
+    avatarUrl: string
+    id: number
+    isPro: boolean
+    name: string
+  }
 }
 
 export type cityType = {
@@ -72,6 +85,12 @@ export type AuthData = {
   login: string;
   password: string;
 };
+
+export type CommentData = {
+  offerNumber: string | undefined;
+  comment: string;
+  rating: number | undefined;
+}
 
 export type UserData = {
   id: number;

@@ -1,22 +1,44 @@
 import { useParams } from 'react-router-dom';
-import {offerType} from '../../types/types';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import Map from '../../components/map/map';
-import OtherPlaces from '../../components/other-places/other-places';
 import {useAppSelector} from '../../hooks';
+import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
+import { AppDispatch, State } from '../../types/state';
+import Error from '../../components/error/error';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import OtherPlaces from '../../components/other-places/other-places';
+import AuthStatus from '../../components/auth-status/auth-status';
+
+const noOp = () => undefined;
+const getCurrentCitySelector = (id:string | undefined) => {
+  if (typeof id !== 'string') {
+    return noOp;
+  }
+  const offerId = Number.parseInt(id, 10);
+  if (!Number.isInteger(offerId)) {
+    return noOp;
+  }
+  return(state:State) => state.offers.find((offer) => offerId === offer.id);
+
+};
 
 function Room(): JSX.Element {
-  const {offers, points} = useAppSelector((state) => state);
-  const params = useParams();
-  const articles:offerType[] = [];
-  offers.forEach((offer) => {
-    if (points.find((point) => point.title === offer.title)) {
-      articles.push(offer);
+  const {id} = useParams();
+  const currentCity = useAppSelector(getCurrentCitySelector(id));
+  const dispatch:AppDispatch = useDispatch();
+  useEffect(() => {
+    if (typeof currentCity === 'undefined') {
+      dispatch(fetchOfferAction(id));
     }
-  });
-
-  const offerData = offers.find((offer) => (offer.id === params.id));
+    dispatch(fetchOfferCommentsAction(id));
+    dispatch(fetchOffersNearByAction(id));
+  },
+  [id, currentCity, dispatch]);
+  if (typeof currentCity === 'undefined') {
+    return (<Error />);
+  }
 
   return (
     <>
@@ -57,25 +79,7 @@ function Room(): JSX.Element {
                 </a>
               </div>
               <nav className='header__nav'>
-                <ul className='header__nav-list'>
-                  <li className='header__nav-item user'>
-                    <a
-                      className='header__nav-link header__nav-link--profile'
-                      href='#xxx'
-                    >
-                      <div className='header__avatar-wrapper user__avatar-wrapper'></div>
-                      <span className='header__user-name user__name'>
-                        Oliver.conner@gmail.com
-                      </span>
-                      <span className='header__favorite-count'>3</span>
-                    </a>
-                  </li>
-                  <li className='header__nav-item'>
-                    <a className='header__nav-link' href='#xxx'>
-                      <span className='header__signout'>Sign out</span>
-                    </a>
-                  </li>
-                </ul>
+                <AuthStatus />
               </nav>
             </div>
           </div>
@@ -85,7 +89,7 @@ function Room(): JSX.Element {
             <div className='property__gallery-container container'>
               <div className='property__gallery'>
                 {
-                  offerData?.images.map((photo, index) =>
+                  currentCity?.images.map((photo, index) =>
                     (
                       <div key={photo} className='property__image-wrapper'>
                         <img
@@ -101,11 +105,11 @@ function Room(): JSX.Element {
             </div>
             <div className='property__container container'>
               <div className='property__wrapper'>
-                {offerData?.isPremium ? <div className='property__mark'><span>Premium</span></div> : null}
+                {currentCity?.isPremium ? <div className='property__mark'><span>Premium</span></div> : null}
                 <div className='property__name-wrapper'>
                   <h1 className='property__name'>
                     {/*Beautiful &amp; luxurious studio at great location*/}
-                    {offerData?.title}
+                    {currentCity?.title}
                   </h1>
                   <button
                     className='property__bookmark-button button'
@@ -122,28 +126,28 @@ function Room(): JSX.Element {
                     <span style={{ width: '80%' }} />
                     <span className='visually-hidden'>Rating</span>
                   </div>
-                  <span className='property__rating-value rating__value'>{offerData?.stars}</span>
+                  <span className='property__rating-value rating__value'>{currentCity?.stars}</span>
                 </div>
                 <ul className='property__features'>
                   <li className='property__feature property__feature--entire'>
-                    {offerData?.type}
+                    {currentCity?.type}
                   </li>
                   <li className='property__feature property__feature--bedrooms'>
-                    {offerData?.bedrooms} Bedrooms
+                    {currentCity?.bedrooms} Bedrooms
                   </li>
                   <li className='property__feature property__feature--adults'>
-                    Max {offerData?.guestsMax} adults
+                    Max {currentCity?.guestsMax} adults
                   </li>
                 </ul>
                 <div className='property__price'>
-                  <b className='property__price-value'>€{offerData?.price}</b>
+                  <b className='property__price-value'>€{currentCity?.price}</b>
                   <span className='property__price-text'>&nbsp;night</span>
                 </div>
                 <div className='property__inside'>
                   <h2 className='property__inside-title'>Whats inside</h2>
                   <ul className='property__inside-list'>
                     {
-                      offerData?.householdItems.map((item) => (
+                      currentCity?.goods.map((item) => (
                         <li key={item} className='property__inside-item'>{item}</li>
                       ))
                     }
@@ -155,24 +159,24 @@ function Room(): JSX.Element {
                     <div className='property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper'>
                       <img
                         className='property__avatar user__avatar'
-                        src={offerData?.ownerInfo.avatar}
+                        src={currentCity?.host.avatarUrl}
                         width={74}
                         height={74}
                         alt='Host avatar'
                       />
                     </div>
-                    <span className='property__user-name'>{offerData?.ownerInfo.name}</span>
+                    <span className='property__user-name'>{currentCity?.host.name}</span>
                     <span className='property__user-status'>Pro</span>
                   </div>
                   <div className='property__description'>
                     <p className='property__text'>
-                      {offerData?.description}
+                      {currentCity?.description}
                     </p>
                   </div>
                 </div>
                 <section className='property__reviews reviews'>
-                  <CommentList reviews={offerData?.reviews}/>
-                  <CommentForm />
+                  <CommentList />
+                  {<CommentForm/>}
                 </section>
               </div>
             </div>
@@ -181,7 +185,7 @@ function Room(): JSX.Element {
             </section>
           </section>
           <div className='container'>
-            <OtherPlaces articles={articles}/>
+            <OtherPlaces />
           </div>
         </main>
       </div>

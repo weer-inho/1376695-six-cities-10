@@ -1,13 +1,8 @@
-import {offerType} from '../../types/types';
 import CityCard from '../city-card/city-card';
+import {useAppSelector} from '../../hooks';
 
-type OtherPlacesProps = {
-  articles: offerType[];
-}
-
-function OtherPlaces({articles}:OtherPlacesProps):JSX.Element {
-  // eslint-disable-next-line no-console
-  console.log(articles);
+function OtherPlaces():JSX.Element {
+  const {lastOffersNearBy} = useAppSelector((state) => state);
 
   return (
     <section className='near-places places'>
@@ -16,12 +11,11 @@ function OtherPlaces({articles}:OtherPlacesProps):JSX.Element {
       </h2>
       <div className='near-places__list places__list'>
         {
-          articles.map((article) => {
+          lastOffersNearBy?.map((article) => {
             const keyValue = article.id;
             return (
               <CityCard
                 onHovered={() => undefined}
-                onDeactivated={() => undefined}
                 key={keyValue}
                 offer={article}
                 isActive={false}
