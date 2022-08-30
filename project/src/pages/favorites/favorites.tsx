@@ -1,12 +1,9 @@
-import {cityType} from '../../types/types';
 import CityCard from '../../components/city-card/city-card';
 import {useAppSelector} from '../../hooks';
+import { cities } from '../../mocks/mock-data';
 
 function Favorites(): JSX.Element {
   const {offers} = useAppSelector((state) => state);
-  let cities:cityType[] = [];
-  offers.forEach((offer) => cities.push(offer.city));
-  cities = [...new Set(cities)];
 
   return (
     <>
@@ -88,7 +85,7 @@ function Favorites(): JSX.Element {
                       <div className='favorites__places'>
                         {
                           offers.map((offer) =>
-                            offer.city === city ?
+                            offer.city.name === city.name ?
                               (
                                 <CityCard
                                   onHovered={() => undefined}
