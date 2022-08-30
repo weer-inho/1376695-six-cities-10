@@ -46,7 +46,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);
     })
     .addCase(loadComments, (state, action) => {
-      state.lastComments = action.payload;
+      state.lastComments = action.payload.reverse();
     })
     .addCase(loadOffersNearBy, (state, action) => {
       state.lastOffersNearBy = action.payload;

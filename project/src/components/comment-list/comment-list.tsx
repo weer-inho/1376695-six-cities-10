@@ -11,9 +11,12 @@ function CommentList(): JSX.Element {
       </h2>
       <ul className='reviews__list'>
         {
-          lastComments?.map((review) => (
-            <CommentItem review={review} key={`${review?.id}-${review?.date}`}/>
-          ))
+          lastComments?.map((review) => {
+            if (review?.id > 10) {
+              return undefined;
+            }
+            return (<CommentItem review={review} key={`${review?.id}-${review?.date}`}/>);
+          })
         }
       </ul>
     </>
