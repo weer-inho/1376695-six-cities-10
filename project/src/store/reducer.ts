@@ -8,7 +8,7 @@ const initialState = {
   hoveredCard:  '',
   offers: [] as offerType[],
   points: POINTS,
-  mainCity: cities[1],
+  mainCity: cities[0],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
   sorting: 'Popular',
