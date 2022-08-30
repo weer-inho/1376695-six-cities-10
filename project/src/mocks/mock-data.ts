@@ -121,11 +121,12 @@ export const offers: offerType[] = [
     description: 'Etiam semper eu dolor in bibendum. Aliquam non hendrerit nisl. Mauris tincidunt tellus non ante fermentum tempus. Sed ultrices lorem nisl, vel commodo ante volutpat nec. Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. Nam porttitor iaculis dui at ultrices. Mauris a laoreet dolor. Fusce turpis risus, sodales vulputate lorem at, vehicula placerat purus. Ut nec laoreet nisl.',
     type: 'apartment',
     isPremium: true,
-    stars: 3,
+    rating: 3,
     city: cities[0],
     bedrooms: 2,
     guestsMax: 7,
     price: 4534,
+    previewImage: '',
     goods: ['Wifi', 'Heating', 'Kitchen', 'Cable TV'],
     isFavorite: true,
     host: {
@@ -147,7 +148,8 @@ export const offers: offerType[] = [
     description: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque id finibus tellus',
     type: 'flat',
     isPremium: false,
-    stars: 5,
+    rating: 5,
+    previewImage: '',
     city: cities[1],
     bedrooms: 1,
     guestsMax: 4,
@@ -173,9 +175,10 @@ export const offers: offerType[] = [
     description: 'Sed vitae nunc vitae massa varius aliquam sit amet id ante. Maecenas at accumsan quam. Proin quis enim vulputate, suscipit dui non, luctus justo.',
     type: 'villa',
     isPremium: true,
-    stars: 4,
+    rating: 4,
     city: cities[1],
     bedrooms: 5,
+    previewImage: '',
     guestsMax: 14,
     price: 15757,
     goods: ['Wifi', 'Kitchen', 'Cable TV', 'Pool', 'Backyard'],
@@ -199,9 +202,10 @@ export const offers: offerType[] = [
     description: 'Ut mollis nisl eu arcu hendrerit pulvinar. Donec eget leo elementum nisl malesuada viverra. Mauris eu semper velit. Ut mattis nisl vel dui ultrices sagittis. ',
     type: 'atelier',
     isPremium: false,
-    stars: 5,
+    rating: 5,
     city: cities[3],
     bedrooms: 1,
+    previewImage: '',
     guestsMax: 2,
     price: 3435,
     goods: ['Wifi', 'Kitchen', 'Cable TV', 'Balcony'],
@@ -294,10 +298,10 @@ const sortPricesHighToLow = (priceA:offerType, priceB:offerType) => {
 };
 
 const sortRate = (rateA:offerType, rateB:offerType) => {
-  if (rateA.stars < rateB.stars) {
+  if (rateA.rating < rateB.rating) {
     return 1;
   }
-  if (rateA.stars > rateB.stars) {
+  if (rateA.rating > rateB.rating) {
     return -1;
   }
   return 0;

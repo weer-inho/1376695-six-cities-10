@@ -11,10 +11,11 @@ export type offerType = {
   description: string;
   type: string,
   isPremium: boolean,
-  stars: number,
+  rating: number,
   city: cityType,
   bedrooms: number,
   guestsMax: number,
+  previewImage: string,
   price: number,
   goods: string[],
   isFavorite: boolean,

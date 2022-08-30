@@ -126,7 +126,7 @@ function Room(): JSX.Element {
                     <span style={{ width: '80%' }} />
                     <span className='visually-hidden'>Rating</span>
                   </div>
-                  <span className='property__rating-value rating__value'>{currentCity?.stars}</span>
+                  <span className='property__rating-value rating__value'>{currentCity?.rating}</span>
                 </div>
                 <ul className='property__features'>
                   <li className='property__feature property__feature--entire'>
