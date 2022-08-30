@@ -16,7 +16,12 @@ function AuthStatus(): JSX.Element {
             href='#xxx'
           >
             <div className='header__avatar-wrapper user__avatar-wrapper'></div>
-            <span className='header__user-name user__name'>Oliver.conner@gmail.com</span>
+            <Link
+              to={AppRoot.Favorites}
+              className='header__user-name user__name'
+            >
+              Oliver.conner@gmail.com
+            </Link>
             <span className='header__favorite-count'>3</span>
           </a>
         </li>
