@@ -14,7 +14,7 @@ export type offerType = {
   rating: number,
   city: cityType,
   bedrooms: number,
-  guestsMax: number,
+  maxAdults: number,
   previewImage: string,
   price: number,
   goods: string[],

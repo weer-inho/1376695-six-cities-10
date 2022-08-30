@@ -23,7 +23,7 @@ function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
       onMouseEnter={onHovered}
       className='cities__card place-card'
     >
-      {returnPremium(offer.isPremium)};
+      {returnPremium(offer.isPremium)}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <a href='#xxx'>
           <img

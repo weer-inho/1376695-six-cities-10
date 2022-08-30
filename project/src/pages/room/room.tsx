@@ -136,7 +136,7 @@ function Room(): JSX.Element {
                     {currentCity?.bedrooms} Bedrooms
                   </li>
                   <li className='property__feature property__feature--adults'>
-                    Max {currentCity?.guestsMax} adults
+                    Max {currentCity?.maxAdults} adults
                   </li>
                 </ul>
                 <div className='property__price'>
