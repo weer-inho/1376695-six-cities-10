@@ -1,4 +1,4 @@
-import {ChangeEvent, useState, useEffect, FormEvent} from 'react';
+import {ChangeEvent, useState, useEffect, FormEvent, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
 import {CommentData} from '../../types/types';
@@ -14,6 +14,7 @@ function CommentForm():JSX.Element {
     review: '',
     rating: undefined as number | undefined,
   });
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
@@ -29,6 +30,9 @@ function CommentForm():JSX.Element {
 
   const onSubmit = (commentData: CommentData) => {
     dispatch(createCommentAction(commentData));
+    setFormData({...formData, rating: undefined, review: ''});
+    textareaRef.current!.value = '';
+    // ratingNumbers = [5, 4, 3, 2, 1];
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -80,6 +84,7 @@ function CommentForm():JSX.Element {
           }
         </div>
         <textarea
+          ref={textareaRef}
           onChange={formChangeHandle}
           className='reviews__textarea form__textarea'
           id='review'
