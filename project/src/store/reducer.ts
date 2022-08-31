@@ -48,7 +48,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.favoriteOffers = action.payload;
     })
     .addCase(addNewFavorite, (state, action) => {
-      state.favoriteOffers.push(action.payload);
+      state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);
     })
     .addCase(loadOffer, (state, action) => {
       state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);

@@ -1,7 +1,8 @@
 import {offerType} from '../../types/types';
 import {Link} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeFavoriteAction} from '../../store/api-actions';
+import {AppRoot, AuthorizationStatus} from "../../const";
 
 type CityCardType = {
   onHovered: () => void;
@@ -20,6 +21,7 @@ export function returnPremium(isPremium: boolean | undefined):JSX.Element | unde
 }
 
 function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
+  const {authorizationStatus} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   const handleFavorite = () => {
@@ -51,20 +53,36 @@ function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
               {'/ night'}
             </span>
           </div>
-          <button
-            onClick={handleFavorite}
-            className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
-            type='button'
-          >
-            <svg
-              className='place-card__bookmark-icon'
-              width={18}
-              height={19}
-            >
-              <use xlinkHref='#icon-bookmark' />
-            </svg>
-            <span className='visually-hidden'>To bookmarks</span>
-          </button>
+          {
+            authorizationStatus === AuthorizationStatus.Auth ?
+              <button
+                onClick={handleFavorite}
+                className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+                type='button'
+              >
+                <svg
+                  className='place-card__bookmark-icon'
+                  width={18}
+                  height={19}
+                >
+                  <use xlinkHref='#icon-bookmark' />
+                </svg>
+                <span className='visually-hidden'>To bookmarks</span>
+              </button> :
+              <Link
+                to={AppRoot.Login}
+                className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+              >
+                <svg
+                  className='place-card__bookmark-icon'
+                  width={18}
+                  height={19}
+                >
+                  <use xlinkHref='#icon-bookmark' />
+                </svg>
+                <span className='visually-hidden'>To bookmarks</span>
+              </Link>
+          }
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
