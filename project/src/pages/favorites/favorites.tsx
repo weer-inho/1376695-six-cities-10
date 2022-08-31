@@ -1,9 +1,19 @@
 import {useAppSelector} from '../../hooks';
 import { cities } from '../../mocks/mock-data';
 import AuthStatus from '../../components/auth-status/auth-status';
+import {cityType} from '../../types/types';
 
 function Favorites(): JSX.Element {
   const {favoriteOffers} = useAppSelector((state) => state);
+  let actualCities:cityType[] = [];
+  cities.forEach((city) => {
+    favoriteOffers.forEach((offer) => {
+      if (offer.city.name === city.name) {
+        actualCities.push(city);
+      }
+    });
+  });
+  actualCities = Array.from(new Set(actualCities));
 
   if (favoriteOffers.length === 0) {
     return (
@@ -129,7 +139,7 @@ function Favorites(): JSX.Element {
               <h1 className='favorites__title'>Saved listing</h1>
               <ul className='favorites__list'>
                 {
-                  cities.map((city) => (
+                  actualCities.map((city) => (
                     <li key={city.cityId} className='favorites__locations-items'>
                       <div className='favorites__locations locations locations--current'>
                         <div className='locations__item'>
