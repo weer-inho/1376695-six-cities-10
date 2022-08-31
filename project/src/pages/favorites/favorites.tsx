@@ -1,7 +1,8 @@
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import { cities } from '../../mocks/mock-data';
 import AuthStatus from '../../components/auth-status/auth-status';
-import {cityType} from '../../types/types';
+import {cityType, offerType} from '../../types/types';
+import {changeFavoriteAction} from '../../store/api-actions';
 
 function Favorites(): JSX.Element {
   const {favoriteOffers} = useAppSelector((state) => state);
@@ -14,6 +15,11 @@ function Favorites(): JSX.Element {
     });
   });
   actualCities = Array.from(new Set(actualCities));
+  const dispatch = useAppDispatch();
+
+  const handleFavorite = (offer: offerType) => {
+    dispatch(changeFavoriteAction({hotelId: offer.id, status: Number(!offer.isFavorite)}));
+  };
 
   if (favoriteOffers.length === 0) {
     return (
@@ -179,6 +185,7 @@ function Favorites(): JSX.Element {
                                         <span className='place-card__price-text'>/&nbsp;night</span>
                                       </div>
                                       <button
+                                        onClick={() => handleFavorite(offer)}
                                         className='place-card__bookmark-button place-card__bookmark-button--active button'
                                         type='button'
                                       >
