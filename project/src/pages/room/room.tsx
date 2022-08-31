@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
-import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks';
 import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
 import { AppDispatch, State } from '../../types/state';
@@ -10,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import OtherPlaces from '../../components/other-places/other-places';
 import AuthStatus from '../../components/auth-status/auth-status';
+import OfferMap from '../../components/offerMap/map';
 
 const noOp = () => undefined;
 const getCurrentCitySelector = (id:string | undefined) => {
@@ -181,7 +181,7 @@ function Room(): JSX.Element {
               </div>
             </div>
             <section className='property__map map'>
-              <Map />
+              <OfferMap currentCity={currentCity} />
             </section>
           </section>
           <div className='container'>
