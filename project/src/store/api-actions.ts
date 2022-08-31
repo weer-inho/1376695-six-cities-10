@@ -3,7 +3,16 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import {APIRoute, AppRoot} from '../const';
 import {saveToken, dropToken} from '../services/token';
-import { loadCities, setDataLoadedStatus, requireAuthorization, redirectToRoute, loadOffer, loadComments, loadOffersNearBy } from './action';
+import {
+  loadCities,
+  setDataLoadedStatus,
+  requireAuthorization,
+  redirectToRoute,
+  loadOffer,
+  loadComments,
+  loadOffersNearBy,
+  loadFavorites
+} from './action';
 import {offerType, AuthData, UserData, commentType, CommentData} from '../types/types';
 import {AuthorizationStatus} from '../const';
 
@@ -12,12 +21,30 @@ export const fetchCitiesAction = createAsyncThunk<void, undefined, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchQuestions',
+  'data/fetchCities',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setDataLoadedStatus(true));
     try{
       const {data} = await api.get<offerType[]>(APIRoute.Hotels);
       dispatch(loadCities(data));
+    }
+    finally{
+      dispatch(setDataLoadedStatus(false));
+    }
+  },
+);
+
+export const fetchFavoritesAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setDataLoadedStatus(true));
+    try{
+      const {data} = await api.get<offerType[]>(APIRoute.Favorites);
+      dispatch(loadFavorites(data));
     }
     finally{
       dispatch(setDataLoadedStatus(false));

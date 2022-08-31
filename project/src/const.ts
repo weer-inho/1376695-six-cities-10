@@ -21,6 +21,7 @@ export enum APIRoute {
   Hotels = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Favorites = '/favorite',
 }
 
 export const BACKEND_URL = 'https://10.react.pages.academy/six-cities';

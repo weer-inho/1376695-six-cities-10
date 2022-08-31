@@ -9,7 +9,7 @@ import {
   requireAuthorization,
   loadOffer,
   loadComments,
-  loadOffersNearBy
+  loadOffersNearBy, loadFavorites
 } from './action';
 import {commentType, offerType} from '../types/types';
 import {AuthorizationStatus} from '../const';
@@ -17,6 +17,7 @@ import {AuthorizationStatus} from '../const';
 const initialState = {
   hoveredCard:  undefined as offerType['id'] | undefined,
   offers: [] as offerType[],
+  favoriteOffers: [] as offerType[],
   points: POINTS,
   mainCity: cities[0],
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -41,6 +42,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadCities, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(loadFavorites, (state, action) => {
+      state.favoriteOffers = action.payload;
     })
     .addCase(loadOffer, (state, action) => {
       state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);

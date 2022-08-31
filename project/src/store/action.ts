@@ -8,6 +8,7 @@ export const changeHoveredId = createAction<offerType['id'] | undefined>('change
 export const fillOffersList = createAction('fillOffersList');
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 export const loadCities = createAction<offerType[]>('data/fetchCities');
+export const loadFavorites = createAction<offerType[]>('data/fetchFavorites');
 export const loadOffer = createAction<offerType>('data/fetchOffer');
 export const loadComments = createAction<commentType[]>('data/fetchComments');
 export const loadOffersNearBy = createAction<offerType[]>('data/fetchOffersNearby');
