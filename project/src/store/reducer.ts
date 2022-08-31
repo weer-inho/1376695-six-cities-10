@@ -9,6 +9,7 @@ import {
   requireAuthorization,
   loadOffer,
   loadComments,
+  addNewFavorite,
   loadOffersNearBy, loadFavorites
 } from './action';
 import {commentType, offerType} from '../types/types';
@@ -45,6 +46,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFavorites, (state, action) => {
       state.favoriteOffers = action.payload;
+    })
+    .addCase(addNewFavorite, (state, action) => {
+      state.favoriteOffers.push(action.payload);
     })
     .addCase(loadOffer, (state, action) => {
       state.offers = state.offers.map((offer) => offer.id === action.payload.id ? action.payload : offer);

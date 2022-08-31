@@ -11,7 +11,8 @@ import {
   loadOffer,
   loadComments,
   loadOffersNearBy,
-  loadFavorites
+  loadFavorites,
+  addNewFavorite
 } from './action';
 import {offerType, AuthData, UserData, commentType, CommentData} from '../types/types';
 import {AuthorizationStatus} from '../const';
@@ -59,10 +60,23 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
 }>(
   'data/fetchOffer',
   async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<offerType>(`/hotels/${_arg}`);
+    const {data} = await api.get<offerType>(`/favorite/${_arg}`);
     dispatch(loadOffer(data));
   },
 );
+
+export const changeFavoriteAction = createAsyncThunk<void, {hotelId: number, status: number}, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changeFavorite',
+  async ({hotelId, status}, {dispatch, extra: api}) => {
+    const {data} = await api.post<offerType>(`/favorite/${hotelId}/${status}`);
+    dispatch(addNewFavorite(data));
+  },
+);
+
 
 export const fetchOfferCommentsAction = createAsyncThunk<void, string | undefined, {
   dispatch: AppDispatch,

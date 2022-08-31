@@ -1,5 +1,7 @@
 import {offerType} from '../../types/types';
 import {Link} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks';
+import {changeFavoriteAction} from '../../store/api-actions';
 
 type CityCardType = {
   onHovered: () => void;
@@ -18,6 +20,12 @@ export function returnPremium(isPremium: boolean | undefined):JSX.Element | unde
 }
 
 function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const handleFavorite = () => {
+    dispatch(changeFavoriteAction({hotelId: offer.id, status: Number(!offer.isFavorite)}));
+  };
+
   return (
     <article
       onMouseEnter={onHovered}
@@ -44,6 +52,7 @@ function CityCard({offer, onHovered, isActive}: CityCardType):JSX.Element {
             </span>
           </div>
           <button
+            onClick={handleFavorite}
             className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`}
             type='button'
           >

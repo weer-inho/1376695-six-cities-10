@@ -10,6 +10,7 @@ export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStat
 export const loadCities = createAction<offerType[]>('data/fetchCities');
 export const loadFavorites = createAction<offerType[]>('data/fetchFavorites');
 export const loadOffer = createAction<offerType>('data/fetchOffer');
+export const addNewFavorite = createAction<offerType>('data/addNewFavorite');
 export const loadComments = createAction<commentType[]>('data/fetchComments');
 export const loadOffersNearBy = createAction<offerType[]>('data/fetchOffersNearby');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
