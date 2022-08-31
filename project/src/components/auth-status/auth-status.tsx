@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
 
 function AuthStatus(): JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const {authorizationStatus, favoriteOffers} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -22,7 +22,7 @@ function AuthStatus(): JSX.Element {
             >
               Oliver.conner@gmail.com
             </Link>
-            <span className='header__favorite-count'>3</span>
+            <span className='header__favorite-count'>{favoriteOffers.length}</span>
           </a>
         </li>
         <li className='header__nav-item'>
