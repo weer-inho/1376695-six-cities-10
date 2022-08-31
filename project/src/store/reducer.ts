@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { POINTS, cities} from '../mocks/mock-data';
+import { cities} from '../mocks/mock-data';
 import {
   changeCity,
   changeHoveredId,
@@ -19,7 +19,6 @@ const initialState = {
   hoveredCard:  undefined as offerType['id'] | undefined,
   offers: [] as offerType[],
   favoriteOffers: [] as offerType[],
-  points: POINTS,
   mainCity: cities[0],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
