@@ -2,7 +2,7 @@ import {offerType} from '../../types/types';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeFavoriteAction} from '../../store/api-actions';
-import {AppRoot, AuthorizationStatus} from "../../const";
+import {AppRoot, AuthorizationStatus} from '../../const';
 
 type CityCardType = {
   onHovered: () => void;

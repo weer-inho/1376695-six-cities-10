@@ -65,7 +65,7 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, {
   },
 );
 
-export const changeFavoriteAction = createAsyncThunk<void, {hotelId: number, status: number}, {
+export const changeFavoriteAction = createAsyncThunk<void, {hotelId: number | undefined, status: number}, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance

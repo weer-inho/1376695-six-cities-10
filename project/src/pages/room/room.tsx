@@ -2,7 +2,12 @@ import { useParams } from 'react-router-dom';
 import CommentForm from '../../components/comment-form/comment-form';
 import CommentList from '../../components/comment-list/comment-list';
 import {useAppSelector} from '../../hooks';
-import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
+import {
+  changeFavoriteAction,
+  fetchOfferAction,
+  fetchOfferCommentsAction,
+  fetchOffersNearByAction
+} from '../../store/api-actions';
 import { AppDispatch, State } from '../../types/state';
 import Error from '../../components/error/error';
 import { useEffect } from 'react';
@@ -10,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import OtherPlaces from '../../components/other-places/other-places';
 import AuthStatus from '../../components/auth-status/auth-status';
 import OfferMap from '../../components/offerMap/map';
+import {AppRoot, AuthorizationStatus} from '../../const';
+import {Link} from 'react-router-dom';
 
 const noOp = () => undefined;
 const getCurrentCitySelector = (id:string | undefined) => {
@@ -27,7 +34,11 @@ const getCurrentCitySelector = (id:string | undefined) => {
 function Room(): JSX.Element {
   const {id} = useParams();
   const currentCity = useAppSelector(getCurrentCitySelector(id));
+  const {authorizationStatus} = useAppSelector((state) => state);
   const dispatch:AppDispatch = useDispatch();
+  const handleFavorite = () => {
+    dispatch(changeFavoriteAction({hotelId: currentCity?.id, status: Number(!currentCity?.isFavorite)}));
+  };
   useEffect(() => {
     if (typeof currentCity === 'undefined') {
       dispatch(fetchOfferAction(id));
@@ -111,15 +122,30 @@ function Room(): JSX.Element {
                     {/*Beautiful &amp; luxurious studio at great location*/}
                     {currentCity?.title}
                   </h1>
-                  <button
-                    className='property__bookmark-button button'
-                    type='button'
-                  >
-                    <svg className='property__bookmark-icon' width={31} height={33}>
-                      <use xlinkHref='#icon-bookmark' />
-                    </svg>
-                    <span className='visually-hidden'>To bookmarks</span>
-                  </button>
+                  {
+                    authorizationStatus === AuthorizationStatus.Auth ?
+                      <button
+                        onClick={handleFavorite}
+                        className={`property__bookmark-button button ${currentCity.isFavorite ? 'property__bookmark-button--active' : ''}`}
+                        type='button'
+                      >
+                        <svg className='place-card__bookmark-icon' width={31} height={33}>
+                          <use xlinkHref='#icon-bookmark' />
+                        </svg>
+                        <span className='visually-hidden'>To bookmarks</span>
+                      </button>
+                      :
+                      <Link
+                        to={AppRoot.Login}
+                        className={`property__bookmark-button button ${currentCity.isFavorite ? 'property__bookmark-button--active' : ''}`}
+                        type='button'
+                      >
+                        <svg className='property__bookmark-icon' width={31} height={33}>
+                          <use xlinkHref='#icon-bookmark' />
+                        </svg>
+                        <span className='visually-hidden'>To bookmarks</span>
+                      </Link>
+                  }
                 </div>
                 <div className='property__rating rating'>
                   <div className='property__stars rating__stars'>
