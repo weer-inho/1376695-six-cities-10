@@ -159,7 +159,7 @@ function Favorites(): JSX.Element {
                           favoriteOffers.map((offer) =>
                             offer.city.name === city.name ?
                               (
-                                <article className='favorites__card place-card'>
+                                <article key={`article${offer.id}`} className='favorites__card place-card'>
                                   {
                                     offer.isPremium
                                     &&
