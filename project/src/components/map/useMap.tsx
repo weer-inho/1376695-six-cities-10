@@ -5,12 +5,12 @@ import {getMapInstance} from './get-map-instance';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  city: cityType | undefined
+  city: cityType
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
-    if (mapRef.current === null || city !== null) {
+    if (mapRef.current === null) {
       return;
     }
 

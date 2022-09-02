@@ -7,17 +7,18 @@ const sortingOptions = ['Popular', 'Price: low to high', 'Price: high to low', '
 function SortingForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const [sorting, setSorting] = useState('Popular');
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <form className='places__sorting' action='#' method='get'>
+    <form onClick={() => setIsOpen(!isOpen)} className='places__sorting' action='#' method='get'>
       <span className='places__sorting-caption'>Sort by: </span>
       <span className='places__sorting-type' tabIndex={0}>
-        Popular
+        {sorting}
         <svg className='places__sorting-arrow' width={7} height={4}>
           <use xlinkHref='#icon-arrow-select'/>
         </svg>
       </span>
-      <ul className='places__options places__options--custom places__options--opened'>
+      <ul className={`places__options places__options--custom ${isOpen ? 'places__options--opened' : ''}`}>
         {
           sortingOptions.map((option) => (
             <li
