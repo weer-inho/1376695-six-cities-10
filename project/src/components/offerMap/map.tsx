@@ -29,7 +29,7 @@ function OfferMap({currentCity}: OfferMapType):JSX.Element {
   const mainCity = cities.find((city: cityType) => city?.name === currentCity.city.name);
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, mainCity!);
+  const map = useMap(mapRef, mainCity || cities[0]);
 
   if (map) {
     lastOffersNearBy?.forEach((point) => {

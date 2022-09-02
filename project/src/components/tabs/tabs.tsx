@@ -5,7 +5,6 @@ import {cities} from '../../mocks/mock-data';
 function Tabs():JSX.Element {
   const {mainCity} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  // const console = (evt) => {evt.target}
 
   return (
     <div className='tabs'>

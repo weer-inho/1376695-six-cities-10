@@ -31,8 +31,7 @@ function CommentForm():JSX.Element {
   const onSubmit = (commentData: CommentData) => {
     dispatch(createCommentAction(commentData));
     setFormData({...formData, rating: undefined, review: ''});
-    textareaRef.current!.value = '';
-    // ratingNumbers = [5, 4, 3, 2, 1];
+    if (textareaRef.current) {textareaRef.current.value = '';}
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
